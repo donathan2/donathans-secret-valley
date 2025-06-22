@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #99f78d;
   --foreground: #171717;
 }
 
@@ -12,15 +12,21 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overscroll-behavior-y: contain; /* prevents scroll chaining */
+  -webkit-overflow-scrolling: touch; /* smoother scrolling on iOS */
+  overscroll-behavior: none; /* disables bounce on some browsers */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-image: url('/main-background.jpg'); /* name of your image */
+  background-size: cover;                  /* scales image to cover screen */
+  background-position: center;             /* centers the image */
+  background-repeat: no-repeat;            /* avoids tiling */
+  color: var(--foreground);                /* keep your text color */
   font-family: Arial, Helvetica, sans-serif;
+  background-attachment: fixed;
 }
