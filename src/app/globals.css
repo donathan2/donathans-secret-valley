@@ -6,12 +6,17 @@
 }
 
 html, body {
+  cursor: none;
   height: 100%;
   margin: 0;
   padding: 0;
   overscroll-behavior-y: contain; /* prevents scroll chaining */
   -webkit-overflow-scrolling: touch; /* smoother scrolling on iOS */
   overscroll-behavior: none; /* disables bounce on some browsers */
+}
+
+button, :link {
+  cursor: none;
 }
 
 body {

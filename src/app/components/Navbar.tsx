@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { Are_You_Serious } from "next/font/google";
 import { Risque } from "next/font/google";
-
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 const titleFont = Are_You_Serious({
   subsets: ["latin"],
   weight: "400",
@@ -16,9 +17,16 @@ const tabFont = Risque({
 const vine = "url('/vine.png')";
 
 export default function Navbar() {
+  const router = useRouter();
+
   return (
     <>
-      <nav className=" h-[80px] bg-gradient-to-r from-green-700 to-lime-300 shadow-md px-10 py-4 border-b-8 border-lime-200 flex justify-between items-center">
+      <motion.nav
+        className="fixed top-0 h-[80px] w-full z-20 bg-gradient-to-r from-green-700 to-lime-300 shadow-md px-10 py-4 border-b-8 border-lime-200 flex justify-between items-center cursor-none"
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
         <div
           className={`${titleFont.className} text-stone-50 text-5xl font-bold`}
           style={{ textShadow: "5px -5px 1px rgba(0, 0, 0, 0.8)" }}
@@ -26,28 +34,32 @@ export default function Navbar() {
           Donathan's Secret Garden
         </div>
         <div className="flex flex-row space-x-12 mt-[18px] items-center">
-          <Link
-            href="/"
-            className={`${tabFont.className} text-amber-50 text-4xl font-bold hover:text-emerald-400`}
+          <motion.div
+            className={`${tabFont.className} text-amber-50 text-4xl font-bold hover:text-yellow-400`}
+            whileHover={{ scale: 1.25 }}
+            whileTap={{ scale: 1 }}
+            onClick={() => router.push("/")}
             style={{ textShadow: "3px -3px 1px rgba(0, 0, 0, 1)" }}
           >
             Home
-          </Link>
+          </motion.div>
           <div className="relative group inline-block">
-            <button
+            <motion.button
               className={`${tabFont.className} text-amber-50 text-4xl font-bold hover:text-emerald-400 flex items-center gap-1`}
               style={{ textShadow: "3px -3px 1px rgba(0, 0, 0, 1)" }}
+              whileHover={{ scale: 1.25 }}
+              whileTap={{ scale: 1 }}
             >
               About <span className="text-2xl"></span>
-            </button>
+            </motion.button>
 
             <div
               className="absolute left-0 mt-0 w-40 bg-lime-200 rounded-md shadow-lg
                opacity-0 group-hover:opacity-100
-               transform translate-y-0 group-hover:translate-y-0
+               transform translate-y-0 group-hover:translate-y-0 translate-x-[-30px]
                transition-all duration-250
                pointer-events-none group-hover:pointer-events-auto
-               z-50"
+               z-40 cursor-none"
             >
               <Link
                 href="/bio"
@@ -64,12 +76,14 @@ export default function Navbar() {
             </div>
           </div>
           <div className="relative group inline-block">
-            <button
-              className={`${tabFont.className} text-amber-50 text-4xl font-bold hover:text-emerald-400 flex items-center gap-1`}
+            <motion.button
+              className={`${tabFont.className} text-amber-50 text-4xl font-bold hover:text-cyan-400 flex items-center gap-1`}
               style={{ textShadow: "3px -3px 1px rgba(0, 0, 0, 1)" }}
+              whileHover={{ scale: 1.25 }}
+              whileTap={{ scale: 1 }}
             >
               Adventure! <span className="text-2xl"></span>
-            </button>
+            </motion.button>
 
             <div
               className="absolute left-0 mt-0 w-40 bg-lime-200 rounded-md shadow-lg
@@ -77,7 +91,7 @@ export default function Navbar() {
                transform translate-y-0 group-hover:translate-y-0
                transition-all duration-250
                pointer-events-none group-hover:pointer-events-auto
-               z-50"
+               z-40 group-hover:cursor-none cursor-none"
             >
               <Link
                 href="/cave"
@@ -93,22 +107,24 @@ export default function Navbar() {
               </Link>
             </div>
           </div>
-          <Link
-            href="/projects"
-            className={`${tabFont.className} text-amber-50 text-4xl font-bold " hover:text-emerald-400"`}
+          <motion.div
+            className={`${tabFont.className} text-amber-50 text-4xl font-bold hover:text-purple-400`}
+            whileHover={{ scale: 1.25 }}
+            whileTap={{ scale: 1 }}
+            onClick={() => router.push("/projects")}
             style={{ textShadow: "3px -3px 1px rgba(0, 0, 0, 1)" }}
           >
             Projects
-          </Link>
+          </motion.div>
         </div>
-      </nav>
-      <div className="absolute top-[-60px] left-[1050px] w-[375px] h-[375px] pointer-events-none">
-        <img
-          src="/vine.png"
-          alt="vine"
-          className="w-full h-auto transform scale-x-[-1] pointer-events-none"
-        />
-      </div>
+        <div className="z-30 fixed top-[-60px] left-[1050px] w-[375px] h-[375px] pointer-events-none">
+          <motion.img
+            src="/vine.png"
+            alt="vine"
+            className="w-full h-auto transform scale-x-[-1] pointer-events-none"
+          />
+        </div>
+      </motion.nav>
     </>
   );
 }
