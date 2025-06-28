@@ -20,7 +20,7 @@ button, :link {
 }
 
 body {
-  background-image: url('/main-background.jpg'); /* name of your image */
+  background-image: url('/landscape-2.jpg'); /* name of your image */
   background-size: cover;                  /* scales image to cover screen */
   background-position: center;             /* centers the image */
   background-repeat: no-repeat;            /* avoids tiling */

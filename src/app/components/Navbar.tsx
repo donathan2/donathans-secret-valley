@@ -1,15 +1,16 @@
 "use client";
 import Link from "next/link";
-import { Are_You_Serious } from "next/font/google";
-import { Risque } from "next/font/google";
+import { Tiny5 } from "next/font/google";
+import { Jersey_25 } from "next/font/google";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-const titleFont = Are_You_Serious({
+
+const titleFont = Tiny5({
   subsets: ["latin"],
   weight: "400",
 });
 
-const tabFont = Risque({
+const tabFont = Jersey_25({
   subsets: ["latin"],
   weight: "400",
 });
@@ -31,9 +32,9 @@ export default function Navbar() {
           className={`${titleFont.className} text-stone-50 text-5xl font-bold`}
           style={{ textShadow: "5px -5px 1px rgba(0, 0, 0, 0.8)" }}
         >
-          Donathan's Secret Garden
+          Donathan's Secret Valley
         </div>
-        <div className="flex flex-row space-x-12 mt-[18px] items-center">
+        <div className="flex flex-row space-x-12 mt-[7px] items-center">
           <motion.div
             className={`${tabFont.className} text-amber-50 text-4xl font-bold hover:text-yellow-400`}
             whileHover={{ scale: 1.25 }}
@@ -117,10 +118,10 @@ export default function Navbar() {
             Projects
           </motion.div>
         </div>
-        <div className="z-30 fixed top-[-60px] left-[1050px] w-[375px] h-[375px] pointer-events-none">
+        <div className="z-30 fixed top-[-90px] left-[960px] w-[500px] h-[500px] pointer-events-none">
           <motion.img
-            src="/vine.png"
-            alt="vine"
+            src="/branch-2.png"
+            alt="branch"
             className="w-full h-auto transform scale-x-[-1] pointer-events-none"
           />
         </div>

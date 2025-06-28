@@ -31,7 +31,7 @@ export default function MouseFollower() {
 
   return (
     <motion.img
-      src={isHolding ? "/wand-glow.png" : "/wand.png"}
+      src={isHolding ? "/wand-4.png" : "/wand-3.png"}
       alt="wand"
       style={{
         position: "fixed",
@@ -42,7 +42,7 @@ export default function MouseFollower() {
         pointerEvents: "none",
         zIndex: 1000,
       }}
-      className="w-[120px] h-[120px] -translate-x-[50px] -translate-y-[40px]"
+      className="w-[155px] h-[134px] -translate-x-[58px] -translate-y-[40px]"
     />
   );
 }
