@@ -4,6 +4,8 @@ import { Tiny5 } from "next/font/google";
 import { Jersey_25 } from "next/font/google";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const titleFont = Tiny5({
   subsets: ["latin"],
@@ -22,12 +24,7 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
-        className="fixed top-0 h-[80px] w-full z-20 bg-gradient-to-r from-green-700 to-lime-300 shadow-md px-10 py-4 border-b-8 border-lime-200 flex justify-between items-center cursor-none"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
+      <motion.nav className="fixed top-0 h-[80px] w-full z-20 bg-gradient-to-r from-green-700 to-lime-300 shadow-md px-10 py-4 border-b-8 border-lime-200 flex justify-between items-center cursor-none">
         <div
           className={`${titleFont.className} text-stone-50 text-5xl font-bold`}
           style={{ textShadow: "5px -5px 1px rgba(0, 0, 0, 0.8)" }}
