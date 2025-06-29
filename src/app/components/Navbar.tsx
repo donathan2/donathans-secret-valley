@@ -42,36 +42,15 @@ export default function Navbar() {
             Home
           </motion.div>
           <div className="relative group inline-block">
-            <motion.button
-              className={`${tabFont.className} text-amber-50 text-4xl font-bold hover:text-emerald-400 flex items-center gap-1`}
-              style={{ textShadow: "3px -3px 1px rgba(0, 0, 0, 1)" }}
+            <motion.div
+              className={`${tabFont.className} text-amber-50 text-4xl font-bold hover:text-lime-400`}
               whileHover={{ scale: 1.25 }}
               whileTap={{ scale: 1 }}
+              onClick={() => router.push("/bio")}
+              style={{ textShadow: "3px -3px 1px rgba(0, 0, 0, 1)" }}
             >
-              About <span className="text-2xl"></span>
-            </motion.button>
-
-            <div
-              className="absolute left-0 mt-0 w-40 bg-lime-200 rounded-md shadow-lg
-               opacity-0 group-hover:opacity-100
-               transform translate-y-0 group-hover:translate-y-0 translate-x-[-30px]
-               transition-all duration-250
-               pointer-events-none group-hover:pointer-events-auto
-               z-40 cursor-none"
-            >
-              <Link
-                href="/bio"
-                className={`${tabFont.className} text-2xl font-bold block px-4 py-2 text-gray-800 hover:text-emerald-400 hover:bg-lime-100`}
-              >
-                Bio
-              </Link>
-              <Link
-                href="/contact"
-                className={`${tabFont.className} text-2xl font-bold block px-4 py-2 text-gray-800 hover:text-emerald-400 hover:bg-lime-100`}
-              >
-                Contact
-              </Link>
-            </div>
+              About
+            </motion.div>
           </div>
           <div className="relative group inline-block">
             <motion.button

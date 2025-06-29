@@ -5,15 +5,32 @@ import MouseFollower from "../components/MouseFollower";
 import { motion } from "framer-motion";
 import { normalFont } from "../layout";
 import { headingFont } from "../layout";
+import { useState, useEffect } from "react";
 
 export default function BioPage() {
   const router = useRouter();
+  const [scrolledPast, setScrolledPast] = useState(false);
+
+  useEffect(() => {
+    function handleScroll() {
+      if (window.scrollY > 140) {
+        setScrolledPast(true);
+      } else {
+        setScrolledPast(false);
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
       <MouseFollower></MouseFollower>
       <Navbar />
-      <main className="relative min-h-screen bg-[url('/landscape-3.jpg')] bg-cover bg-fixed bg-center flex items-center justify-start pl-30 pt-16">
+      <div className="fixed inset-0 -z-10 bg-[url('/landscape-3.jpg')] bg-cover bg-fixed bg-center"></div>
+      <main className="relative min-h-screen flex items-center justify-start pl-[122px] pt-16">
         <motion.div
           className="w-[330px] h-[550px] bg-white/52 border-3 border-amber-50 rounded-lg shadow-xl shadow-black/60"
           initial={{ opacity: 0, x: -30 }}
@@ -80,15 +97,83 @@ export default function BioPage() {
           </motion.p>
         </motion.div>
         <motion.h1
-          className={`${headingFont.className} absolute text-7xl text-amber-50 top-[120px] left-[535px]`}
+          className={`${headingFont.className} absolute text-7xl text-amber-50 translate-x-[411px] translate-y-[-230px]`}
           style={{ textShadow: "5px 5px 1px rgba(0, 0,0,1)" }}
-          initial={{ opacity: 0, scale: 2.7 }}
+          initial={{ opacity: 0, scale: 1.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ type: "spring", stiffness: 110 }}
         >
           About me!
         </motion.h1>
       </main>
+      <div className="flex items-center justify-center w-[full] h-[300px]">
+        <motion.div
+          className="w-[83%] h-[80%] translate-y-[-20px] bg-gradient-to-br from-lime-300 to-green-700 rounded-lg shadow-lg shadow-black/60"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={
+            scrolledPast ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }
+          }
+          transition={{ type: "spring", stiffness: 75 }}
+        >
+          <motion.p
+            className={`${headingFont.className} text-6xl text-amber-50 ml-[20px]`}
+            style={{ textShadow: "5px 5px 1px rgba(0, 0,0,1)" }}
+          >
+            Contact Me!
+          </motion.p>
+          <a
+            href="https://www.linkedin.com/in/donathan-truong-5627b8316"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-10 rounded-xl h-[150px] w-[150px] hover:bg-white/15 transition inline-flex items-center justify-center"
+          >
+            <img src="/linkedin.png" alt="linkedin" />
+          </a>
+          <a
+            href="https://leetcode.com/u/alear34/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-10 rounded-xl h-[150px] w-[150px] hover:bg-white/15 transition inline-flex items-center justify-center"
+          >
+            <img src="/leetcode.png" alt="leetcode" />
+          </a>
+          <a
+            href="https://github.com/donathan2"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-10 rounded-xl h-[150px] w-[150px] hover:bg-white/15 transition inline-flex items-center justify-center"
+          >
+            <img src="/github.png" alt="github" />
+          </a>
+          <a
+            href="mailto:dnt34@cornell.edu"
+            className="ml-10 rounded-xl h-[150px] w-[150px] hover:bg-white/15 transition inline-flex items-center justify-center"
+          >
+            <img src="/email.png" alt="email for professional/academic" />
+          </a>
+          <a
+            href="mailto:truongdonathan@gmail.com"
+            className="ml-10 rounded-xl h-[150px] w-[150px] hover:bg-white/15 transition inline-flex items-center justify-center"
+          >
+            <img src="/email.png" alt="email for friends" />
+          </a>
+          <a
+            href="mailto:donathan.truong1@gmail.com"
+            className="ml-10 rounded-xl h-[150px] w-[150px] hover:bg-white/15 transition inline-flex items-center justify-center"
+          >
+            <img src="/email.png" alt="email for other" />
+          </a>
+          <p className="absolute text-lg translate-x-[597px] translate-y-[-15px]">
+            Professional/Academic
+          </p>
+          <p className="absolute text-lg translate-x-[812px] translate-y-[-15px]">
+            Personal Friends
+          </p>
+          <p className="absolute text-lg translate-x-[1010px] translate-y-[-15px]">
+            Other inquiries
+          </p>
+        </motion.div>
+      </div>
     </>
   );
 }
