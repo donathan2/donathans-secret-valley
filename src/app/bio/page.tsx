@@ -119,7 +119,7 @@ export default function BioPage() {
             className={`${headingFont.className} text-6xl text-amber-50 ml-[20px]`}
             style={{ textShadow: "5px 5px 1px rgba(0, 0,0,1)" }}
           >
-            Contact Me!
+            Get in touch!
           </motion.p>
           <a
             href="https://www.linkedin.com/in/donathan-truong-5627b8316"

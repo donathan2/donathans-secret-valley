@@ -49,11 +49,11 @@ export default function Navbar() {
               onClick={() => router.push("/bio")}
               style={{ textShadow: "3px -3px 1px rgba(0, 0, 0, 1)" }}
             >
-              About
+              <p>About</p>
             </motion.div>
           </div>
-          <div className="relative group inline-block">
-            <motion.button
+          {/* <div className="relative group inline-block">
+             <motion.button
               className={`${tabFont.className} text-amber-50 text-4xl font-bold hover:text-cyan-400 flex items-center gap-1`}
               style={{ textShadow: "3px -3px 1px rgba(0, 0, 0, 1)" }}
               whileHover={{ scale: 1.25 }}
@@ -82,8 +82,8 @@ export default function Navbar() {
               >
                 Pond
               </Link>
-            </div>
-          </div>
+            </div> 
+          </div> */}
           <motion.div
             className={`${tabFont.className} text-amber-50 text-4xl font-bold hover:text-purple-400`}
             whileHover={{ scale: 1.25 }}
