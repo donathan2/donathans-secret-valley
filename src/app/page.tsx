@@ -60,7 +60,7 @@ export default function Home() {
           </motion.div>
         </div>
         <motion.div
-          className="absolute z-10 w-full h-350 mx-auto bg-neutral-950/30 mt-[250px]"
+          className="fixed z-10 w-full h-350 mx-auto bg-neutral-950/30 mt-[250px]"
           initial={{ opacity: 0, y: 200 }}
           animate={
             scrolledPast ? { opacity: 100, y: 0 } : { opacity: 0, y: 200 }
@@ -68,20 +68,22 @@ export default function Home() {
           transition={{ duration: 0.2 }}
         ></motion.div>
       </main>
-      <motion.div
-        className={`${normalFont.className} z-20 w-225 pt-10 text-center text-2xl pl-5 pr-5 shadow-lg shadow-green-950 h-55 mx-auto bg-gradient-to-br from-lime-200 via-green-600 to-green-800`}
-        initial={{ opacity: 0, scale: 0 }}
-        animate={
-          scrolledPast ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }
-        }
-        transition={{ type: "spring", stiffness: 100, damping: 14 }}
-      >
-        Hi! I&apos;m Donathan, and this is a webpage I made out of nothing but
-        an inexorable drive for fantastical creation. Feel free to click around
-        and explore. I had a lot of fun creating this, and I want to share a
-        little bit of that joy with you. All props, besides the landscapes, are
-        designed with love by me!
-      </motion.div>
+      <div className="w-full h-[500px]">
+        <motion.div
+          className={`${normalFont.className} z-20 w-225 pt-10 text-center text-2xl pl-5 pr-5 shadow-lg shadow-green-950 h-55 mx-auto bg-gradient-to-br from-lime-200 via-green-600 to-green-800`}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={
+            scrolledPast ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }
+          }
+          transition={{ type: "spring", stiffness: 100, damping: 14 }}
+        >
+          Hi! I&apos;m Donathan, and this is a webpage I made out of nothing but
+          an inexorable drive for fantastical creation. Feel free to click
+          around and explore. I had a lot of fun creating this, and I want to
+          share a little bit of that joy with you. All graphics you see, besides
+          the landscapes, were drawn with care by me!
+        </motion.div>
+      </div>
     </>
   );
 }

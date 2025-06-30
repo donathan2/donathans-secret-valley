@@ -59,7 +59,7 @@ export default function ProjectsPage() {
         initial={{ opacity: 0 }}
         animate={showBitBridge ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
-        className="fixed bg-cyan-950/75 inset-0 pointer-events-none"
+        className="fixed w-[99.5%] shadow-[0_0_10px_10px_rgba(75,239,255,0.9)] translate-x-[-50%] left-1/2 bg-cyan-950/75 inset-0 shadow pointer-events-none"
       />
       <main className="relative mx-auto w-full h-[575px]">
         <motion.div
@@ -152,7 +152,7 @@ export default function ProjectsPage() {
             aspiring coders. Simply create a project, or join one! You&apos;ll
             become part of a team with other coders with an integrated workspace
             area, built-in GitHub integration, and an interface designed for
-            collaborate work.
+            collaborative work.
           </p>
           <p className="m-5">
             BitBridge is gamified as well! Upon finishing a project or
