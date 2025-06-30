@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { normalFont } from "../lib/fonts";
 import { headingFont } from "../lib/fonts";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 export default function BioPage() {
   const [scrolledPast, setScrolledPast] = useState(false);
@@ -17,7 +18,6 @@ export default function BioPage() {
         setScrolledPast(false);
       }
     }
-
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
@@ -105,7 +105,7 @@ export default function BioPage() {
           About me!
         </motion.h1>
       </main>
-      <div className="flex items-center justify-center w-[full] h-[300px]">
+      <div className="flex relative items-center justify-center w-[full] h-[300px]">
         <motion.div
           className="w-[83%] h-[80%] translate-y-[-20px] bg-gradient-to-br from-lime-300 to-green-700 rounded-lg shadow-lg shadow-black/60"
           initial={{ scale: 0, opacity: 0 }}
@@ -172,6 +172,17 @@ export default function BioPage() {
             Other inquiries
           </p>
         </motion.div>
+        <motion.img
+          src="/vietnam.png"
+          alt="vietnam flag"
+          width={315}
+          height={315}
+          className="absolute translate-x-[-200%] translate-y-[-110%]"
+          style={{ overflowY: "visible" }}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ type: "spring" }}
+        ></motion.img>
       </div>
     </>
   );
