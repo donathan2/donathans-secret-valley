@@ -1,7 +1,7 @@
 "use client";
 import Navbar from "../components/Navbar";
 import MouseFollower from "../components/MouseFollower";
-import { headingFont } from "../fonts";
+import { headingFont } from "../lib/fonts";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Press_Start_2P } from "next/font/google";

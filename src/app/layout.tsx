@@ -1,16 +1,11 @@
 import "./globals.css";
 import { ReactNode } from "react";
-import { Tiny5 } from "next/font/google";
+import { normalFont } from "./lib/fonts";
 
 export const metadata = {
   title: "Donathan's Secret Valley",
   description: "Donathan's personal website",
 };
-
-export const normalFont = Tiny5({
-  subsets: ["latin"],
-  weight: "400",
-});
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

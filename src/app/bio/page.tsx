@@ -2,8 +2,8 @@
 import Navbar from "../components/Navbar";
 import MouseFollower from "../components/MouseFollower";
 import { motion } from "framer-motion";
-import { normalFont } from "../fonts";
-import { headingFont } from "../fonts";
+import { normalFont } from "../lib/fonts";
+import { headingFont } from "../lib/fonts";
 import { useState, useEffect } from "react";
 
 export default function BioPage() {
