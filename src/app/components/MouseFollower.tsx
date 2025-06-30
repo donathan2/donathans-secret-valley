@@ -1,6 +1,5 @@
 "use client";
 import { motion, useMotionValue } from "framer-motion";
-import { div } from "framer-motion/client";
 import { useEffect, useState } from "react";
 
 export default function MouseFollower() {

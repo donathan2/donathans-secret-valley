@@ -11,7 +11,7 @@ const bitbridgeFont = Press_Start_2P({
   weight: "400",
 });
 
-export default function projectsPage() {
+export default function ProjectsPage() {
   const controls = useAnimation();
   const [showBitBridge, setShowBitBridge] = useState(false);
 
@@ -81,11 +81,12 @@ export default function projectsPage() {
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
           <p className="ml-[25px] mr-[20px] pt-[45px] leading-relaxed text-2xl">
-            Here you'll find an archive of programming projects I've worked on!
-            I've gotten much better at programming since I've begun college, so
-            I'll only include major projects starting from then. If you have any
-            comments or opinions, please feel welcome to tell me what you think!
-            I love hearing suggestions for any work I do.
+            Here you&apos;ll find an archive of programming projects I&apos;ve
+            worked on! I&apos;ve gotten much better at programming since
+            I&apos;ve begun college, so I&apos;ll only include major projects
+            starting from then. If you have any comments or opinions, please
+            feel welcome to tell me what you think! I love hearing suggestions
+            for any work I do.
           </p>
         </motion.div>
         <motion.div
@@ -148,9 +149,9 @@ export default function projectsPage() {
           <p className="m-5">
             This is BitBridge! BitBridge is a web app where users can hone their
             coding skills via project based learning within a community of other
-            aspiring coders. Simply create a project, or join one! You'll become
-            part of a team with other coders with an integrated workspace area,
-            built-in GitHub integration, and an interface designed for
+            aspiring coders. Simply create a project, or join one! You&apos;ll
+            become part of a team with other coders with an integrated workspace
+            area, built-in GitHub integration, and an interface designed for
             collaborate work.
           </p>
           <p className="m-5">
@@ -163,7 +164,7 @@ export default function projectsPage() {
             BitBridge can be used as a tool to help students break into the
             coding sphere in a supportive environment, but anyone can utilize it
             to find a collaborative project to work on and add to their
-            portfolios if they don't have a team.
+            portfolios if they don&apos;t have a team.
           </p>
         </motion.div>
         <motion.div

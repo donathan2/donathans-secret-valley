@@ -5,7 +5,6 @@ import MouseFollower from "./components/MouseFollower";
 import { useEffect, useState } from "react";
 import { Jersey_25 } from "next/font/google";
 import { Tiny5 } from "next/font/google";
-import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
 const nameFont = Jersey_25({
@@ -19,7 +18,6 @@ const normalFont = Tiny5({
 });
 
 export default function Home() {
-  const router = useRouter();
   const [scrolledPast, setScrolledPast] = useState(false);
 
   useEffect(() => {
