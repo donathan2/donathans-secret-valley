@@ -1,11 +1,12 @@
 "use client";
-import Link from "next/link";
 import { Tiny5 } from "next/font/google";
 import { Jersey_25 } from "next/font/google";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useEffect } from "react";
+{
+  /* import { useState } from "react";
+import { useEffect } from "react"; */
+}
 
 const titleFont = Tiny5({
   subsets: ["latin"],
@@ -17,8 +18,6 @@ const tabFont = Jersey_25({
   weight: "400",
 });
 
-const vine = "url('/vine.png')";
-
 export default function Navbar() {
   const router = useRouter();
 
@@ -29,7 +28,7 @@ export default function Navbar() {
           className={`${titleFont.className} text-stone-50 text-5xl font-bold`}
           style={{ textShadow: "5px -5px 1px rgba(0, 0, 0, 0.8)" }}
         >
-          Donathan's Secret Valley
+          Donathan&apos;s Secret Valley
         </div>
         <div className="flex flex-row space-x-12 mt-[7px] items-center">
           <motion.div

@@ -1,5 +1,4 @@
 "use client";
-import { useRouter } from "next/navigation";
 import Navbar from "../components/Navbar";
 import MouseFollower from "../components/MouseFollower";
 import { motion } from "framer-motion";
@@ -8,7 +7,6 @@ import { headingFont } from "../layout";
 import { useState, useEffect } from "react";
 
 export default function BioPage() {
-  const router = useRouter();
   const [scrolledPast, setScrolledPast] = useState(false);
 
   useEffect(() => {
@@ -66,29 +64,30 @@ export default function BioPage() {
           transition={{ duration: 0.5 }}
         >
           <motion.p className="ml-5 mt-24 mr-5">
-            Hi! I'm Donathan, and I love self-expression! So much so, that my
-            childhood dream was to become an author. In high school I loved
-            reading novels and writing poetry. I even told everyone decidedly
-            I'd be an English major. But writing books is hard. Finding a
+            Hi! I&apos;m Donathan, and I love self-expression! So much so, that
+            my childhood dream was to become an author. In high school I loved
+            reading novels and writing poetry. I&apos;d told everyone decidedly
+            I&apos;d be an English major. But writing books is hard. Finding a
             publisher is harder. And honestly, I have nowhere near the level of
-            wisdom I should have to write a respectable novel. That shit is so
-            hard.
+            wisdom I should have to write a respectable novel. That stuff is so
+            difficult.
           </motion.p>
           <motion.p className="ml-5 mt-8 mr-5">
             Programming, however, was always in reach for me. All I needed was a
             computer and decent-ish internet and I could make anything I put my
-            mind towards. I love programming. There's no medium for expression
-            that allows me to so easily conjure thoughts into words, words into
-            pictures, and make that picture do a bunch of things when I click
-            buttons. Programming is so immensely powerful and I want to do this
-            for the rest of my life.
+            mind towards. I love programming. There&apos;s no medium for
+            expression that allows me to so easily conjure thoughts into words,
+            words into pictures, and make that picture do a bunch of things when
+            I click buttons. Programming is so immensely powerful and I want to
+            do this for the rest of my life.
           </motion.p>
           <motion.p className="ml-5 mt-8 mr-5">
-            Right now, I'm a rising sophomore at Cornell University studying
-            Computer Science. I do Python, Java, JS, HTML/CSS, C++, and more.
-            I'm learning bit by bit every day, but there's always something new
-            to learn! I'm always looking for a fun project to collaborate on or
-            an exhilarating software internship position.
+            Right now, I&apos;m a rising sophomore at Cornell University
+            studying Computer Science. I do Python, Java, JS, HTML/CSS, C++, and
+            more. I&apos;m learning bit by bit every day, but there&apos;s
+            always something new to learn! I&apos;m always looking for a fun
+            project to collaborate on or an exhilarating software internship
+            position.
           </motion.p>
           <motion.p className="ml-5 mt-8 mr-5">
             In my free time, I love the arts! I love reading Murakami and
