@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { normalFont } from "../lib/fonts";
 import { headingFont } from "../lib/fonts";
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 export default function BioPage() {
   const [scrolledPast, setScrolledPast] = useState(false);
