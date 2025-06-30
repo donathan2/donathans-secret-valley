@@ -37,7 +37,7 @@ export default function BioPage() {
           <motion.img
             src="/portrait.png"
             alt="portrait"
-            className="w-[330px] h-[290px]"
+            className="w-[330px] h-[300px]"
           ></motion.img>
           <p className="text-2xl text-center">Me!</p>
           <p className="text-xl text-center pt-5 underline">Quick Facts</p>
