@@ -42,9 +42,9 @@ export default function AdventurePage() {
             transition={{ type: "spring" }}
           >
             <p className="text-center text-xl m-[30px] mt-[45px]">
-              This is a "junk ground" for random code that isn&apos;t big enough
-              to constitute an actual project, or just any kind of whatever
-              for-fun stuff. WIP
+              This is a &quot;junk ground&quot; for random code that isn&apos;t
+              big enough to constitute an actual project, or just any kind of
+              whatever for-fun stuff. WIP
             </p>
           </motion.div>
         </div>
