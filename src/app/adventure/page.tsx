@@ -20,7 +20,7 @@ export default function AdventurePage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: "spring" }}
           >
-            <p>Let's explore!</p>
+            <p>Let&apos;s explore!</p>
           </motion.div>
           <motion.div
             className="z-10 absolute w-[600px] h-[45px] bg-gradient-to-br from-fuchsia-300 to-purple-500 translate-y-[165px] left-1/2 translate-x-[-170px] rounded-xl border border-3 border-white shadow shadow-white"
