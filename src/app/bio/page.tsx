@@ -65,25 +65,26 @@ export default function BioPage() {
           <motion.p className="ml-5 mt-24 mr-5">
             Hi! I&apos;m Donathan, and I love self-expression! So much so, that
             my childhood dream was to become an author. In high school I loved
-            reading novels and writing poetry. I&apos;d told everyone decidedly
-            I&apos;d be an English major. But writing books is hard. Finding a
-            publisher is harder. And honestly, I have nowhere near the level of
-            wisdom I should have to write a respectable novel. That stuff is so
-            difficult.
+            reading novels and writing poetry. I would told everyone decidedly
+            that I&apos;d become an English major. But writing books is hard.
+            Finding a publisher is harder. And honestly, I have nowhere near the
+            wisdom or life experience I would need to write a respectable novel.
+            That stuff takes so much thoughtful introspection.
           </motion.p>
           <motion.p className="ml-5 mt-8 mr-5">
             Programming, however, was always in reach for me. All I needed was a
-            computer and decent-ish internet and I could make anything I put my
-            mind towards. I love programming. There&apos;s no medium for
+            computer and a working internet and I could create anything I put my
+            mind towards. It&apos;s crazy honestly. There&apos;s no medium for
             expression that allows me to so easily conjure thoughts into words,
             words into pictures, and make that picture do a bunch of things when
-            I click buttons. Programming is so immensely powerful and I want to
-            do this for the rest of my life.
+            I click buttons. Every day I realize with increasing clarity how
+            powerful programming is and it reinstills in me how much I want to
+            pursue this for the rest of my life.
           </motion.p>
           <motion.p className="ml-5 mt-8 mr-5">
             Right now, I&apos;m a rising sophomore at Cornell University
             studying Computer Science. I do Python, Java, JS, HTML/CSS, C++, and
-            more. I&apos;m learning bit by bit every day, but there&apos;s
+            more. I&apos;m learning bit by bit every day, and there&apos;s
             always something new to learn! I&apos;m always looking for a fun
             project to collaborate on or an exhilarating software internship
             position.
@@ -94,6 +95,18 @@ export default function BioPage() {
             anime, reading manga, and playing a lot of video games.
           </motion.p>
         </motion.div>
+        <motion.img
+          src="/vietnam.png"
+          alt="vietnam flag"
+          width={315}
+          height={315}
+          className="absolute translate-x-[-180px] translate-y-[55px]"
+          style={{ overflowY: "visible" }}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ type: "spring" }}
+          whileTap={{ scale: 1.1 }}
+        ></motion.img>
         <motion.h1
           className={`${headingFont.className} absolute text-7xl text-amber-50 translate-x-[411px] translate-y-[-230px]`}
           style={{ textShadow: "5px 5px 1px rgba(0, 0,0,1)" }}
@@ -106,24 +119,33 @@ export default function BioPage() {
       </main>
       <div className="flex relative items-center justify-center w-[full] h-[300px]">
         <motion.div
-          className="w-[83%] h-[80%] translate-y-[-20px] bg-gradient-to-br from-lime-300 to-green-700 rounded-lg shadow-lg shadow-black/60"
+          className="absolute w-[315px] h-[70px] z-20 bg-gradient-to-br from-lime-300 to-green-300 translate-x-[-325px] border-4 border-white/30 rounded rounded-lg translate-y-[-75px] shadow-xl shadow-white/10"
+          initial={{ opacity: 0, scale: 0 }}
+          animate={
+            scrolledPast ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }
+          }
+          transition={{ type: "spring", delay: 0.2 }}
+        >
+          <motion.p
+            className={`${headingFont.className} text-6xl text-amber-50 ml-[10px]`}
+            style={{ textShadow: "5px 5px 1px rgba(0, 0,0,1)" }}
+          >
+            Lets connect!
+          </motion.p>
+        </motion.div>
+        <motion.div
+          className="w-[1000px] h-[145px] translate-y-[10px] bg-gradient-to-br from-lime-300 to-green-600 rounded-lg shadow-lg shadow-black/60"
           initial={{ scale: 0, opacity: 0 }}
           animate={
             scrolledPast ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }
           }
           transition={{ type: "spring", stiffness: 75 }}
         >
-          <motion.p
-            className={`${headingFont.className} text-6xl text-amber-50 ml-[20px]`}
-            style={{ textShadow: "5px 5px 1px rgba(0, 0,0,1)" }}
-          >
-            Get in touch!
-          </motion.p>
           <a
             href="https://www.linkedin.com/in/donathan-truong-5627b8316"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-10 rounded-xl h-[150px] w-[150px] hover:bg-white/15 transition inline-flex items-center justify-center"
+            className="ml-15 mt-[28px] rounded-xl h-[95px] w-[95px] hover:bg-white/15 transition inline-flex items-center justify-center"
           >
             <img src="/linkedin.png" alt="linkedin" />
           </a>
@@ -131,7 +153,7 @@ export default function BioPage() {
             href="https://leetcode.com/u/alear34/"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-10 rounded-xl h-[150px] w-[150px] hover:bg-white/15 transition inline-flex items-center justify-center"
+            className="ml-15 rounded-xl h-[95px] w-[95px] hover:bg-white/15 transition inline-flex items-center justify-center"
           >
             <img src="/leetcode.png" alt="leetcode" />
           </a>
@@ -139,48 +161,49 @@ export default function BioPage() {
             href="https://github.com/donathan2"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-10 rounded-xl h-[150px] w-[150px] hover:bg-white/15 transition inline-flex items-center justify-center"
+            className="ml-15 rounded-xl h-[95px] w-[95px] hover:bg-white/15 transition inline-flex items-center justify-center"
           >
             <img src="/github.png" alt="github" />
           </a>
           <a
             href="mailto:dnt34@cornell.edu"
-            className="ml-10 rounded-xl h-[150px] w-[150px] hover:bg-white/15 transition inline-flex items-center justify-center"
+            className="ml-15 rounded-xl h-[95px] w-[95px] hover:bg-white/15 transition inline-flex items-center justify-center"
           >
             <img src="/email.png" alt="email for professional/academic" />
           </a>
           <a
             href="mailto:truongdonathan@gmail.com"
-            className="ml-10 rounded-xl h-[150px] w-[150px] hover:bg-white/15 transition inline-flex items-center justify-center"
+            className="ml-15 rounded-xl h-[95px] w-[95px] hover:bg-white/15 transition inline-flex items-center justify-center"
           >
             <img src="/email.png" alt="email for friends" />
           </a>
           <a
             href="mailto:donathan.truong1@gmail.com"
-            className="ml-10 rounded-xl h-[150px] w-[150px] hover:bg-white/15 transition inline-flex items-center justify-center"
+            className="ml-15 rounded-xl h-[95px] w-[95px] hover:bg-white/15 transition inline-flex items-center justify-center"
           >
             <img src="/email.png" alt="email for other" />
           </a>
-          <p className="absolute text-lg translate-x-[597px] translate-y-[-15px]">
+          <p className="absolute text-sm translate-x-[502px] translate-y-[-12px]">
             Professional/Academic
           </p>
-          <p className="absolute text-lg translate-x-[812px] translate-y-[-15px]">
+          <p className="absolute text-sm translate-x-[680px] translate-y-[-12px]">
             Personal Friends
           </p>
-          <p className="absolute text-lg translate-x-[1010px] translate-y-[-15px]">
+          <p className="absolute text-sm translate-x-[840px] translate-y-[-12px]">
             Other inquiries
           </p>
         </motion.div>
         <motion.img
-          src="/vietnam.png"
-          alt="vietnam flag"
-          width={315}
-          height={315}
-          className="absolute translate-x-[-200%] translate-y-[-110%]"
-          style={{ overflowY: "visible" }}
+          src="/butterfly.png"
+          alt="/butterfly"
+          className=" absolute w-[265px] h-[265px] translate-x-[520px] translate-y-[-55px]"
           initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
+          animate={
+            scrolledPast ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }
+          }
           transition={{ type: "spring" }}
+          whileHover={{ rotate: 20 }}
+          whileTap={{ scale: 1.1 }}
         ></motion.img>
       </div>
     </>

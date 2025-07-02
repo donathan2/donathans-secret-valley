@@ -147,12 +147,12 @@ export default function ProjectsPage() {
           transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
         >
           <p className="m-5">
-            This is BitBridge! BitBridge is a web app where users can hone their
-            coding skills via project based learning within a community of other
-            aspiring coders. Simply create a project, or join one! You&apos;ll
-            become part of a team with other coders with an integrated workspace
-            area, built-in GitHub integration, and an interface designed for
-            collaborative work.
+            Code. Collaborate. Level up! BitBridge is a web app where users can
+            hone their coding skills via project based learning within a
+            community of other aspiring coders. Simply create a project, or join
+            one! You&apos;ll become part of a team with other coders with an
+            integrated workspace area, built-in GitHub integration, and an
+            interface designed for collaborative work.
           </p>
           <p className="m-5">
             BitBridge is gamified as well! Upon finishing a project or

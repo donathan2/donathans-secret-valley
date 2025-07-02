@@ -80,8 +80,8 @@ export default function Home() {
           Hi! I&apos;m Donathan, and this is a webpage I made out of nothing but
           an inexorable drive for fantastical creation. Feel free to click
           around and explore. I had a lot of fun creating this, and I want to
-          share a little bit of that joy with you. All graphics you see, besides
-          the landscapes, were drawn with care by me!
+          share a little bit of that joy with you. All graphics (besides the
+          backgrounds) were drawn by me using make8bitart.com.
         </motion.div>
       </div>
     </>
