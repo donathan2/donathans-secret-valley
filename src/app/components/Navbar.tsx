@@ -51,38 +51,16 @@ export default function Navbar() {
               <p>About</p>
             </motion.div>
           </div>
-          {/* <div className="relative group inline-block">
-             <motion.button
-              className={`${tabFont.className} text-amber-50 text-4xl font-bold hover:text-cyan-400 flex items-center gap-1`}
-              style={{ textShadow: "3px -3px 1px rgba(0, 0, 0, 1)" }}
-              whileHover={{ scale: 1.25 }}
-              whileTap={{ scale: 1 }}
-            >
-              Adventure! <span className="text-2xl"></span>
-            </motion.button>
+          <motion.div
+            className={`${tabFont.className} text-amber-50 text-4xl font-bold hover:text-cyan-400`}
+            whileHover={{ scale: 1.25 }}
+            whileTap={{ scale: 1 }}
+            onClick={() => router.push("/adventure")}
+            style={{ textShadow: "3px -3px 1px rgba(0, 0, 0, 1)" }}
+          >
+            <p>Adventure!</p>
+          </motion.div>
 
-            <div
-              className="absolute left-0 mt-0 w-40 bg-lime-200 rounded-md shadow-lg
-               opacity-0 group-hover:opacity-100
-               transform translate-y-0 group-hover:translate-y-0
-               transition-all duration-250
-               pointer-events-none group-hover:pointer-events-auto
-               z-40 group-hover:cursor-none cursor-none"
-            >
-              <Link
-                href="/cave"
-                className={`${tabFont.className} text-2xl font-bold block px-4 py-2 text-gray-800 hover:text-emerald-400 hover:bg-lime-100`}
-              >
-                Cave
-              </Link>
-              <Link
-                href="/pond"
-                className={`${tabFont.className} text-2xl font-bold block px-4 py-2 text-gray-800 hover:text-emerald-400 hover:bg-lime-100`}
-              >
-                Pond
-              </Link>
-            </div> 
-          </div> */}
           <motion.div
             className={`${tabFont.className} text-amber-50 text-4xl font-bold hover:text-purple-400`}
             whileHover={{ scale: 1.25 }}

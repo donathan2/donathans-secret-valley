@@ -196,13 +196,13 @@ export default function BioPage() {
         <motion.img
           src="/butterfly.png"
           alt="/butterfly"
-          className=" absolute w-[265px] h-[265px] translate-x-[520px] translate-y-[-55px]"
+          className=" absolute w-[230px] h-[230px] translate-x-[535px] translate-y-[-65px]"
           initial={{ scale: 0, opacity: 0 }}
           animate={
             scrolledPast ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }
           }
           transition={{ type: "spring" }}
-          whileHover={{ rotate: 20 }}
+          whileHover={{ rotate: 15 }}
           whileTap={{ scale: 1.1 }}
         ></motion.img>
       </div>
