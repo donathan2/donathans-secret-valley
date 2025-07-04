@@ -5,15 +5,46 @@ import { supabase } from "../lib/supabase";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { headingFont } from "../lib/fonts";
+import { useRouter } from "next/navigation";
+import { useRef } from "react";
 
 export default function MonsterLogic() {
+  const [wasCrit, setWasCrit] = useState(false);
+  const router = useRouter();
   const [count, setCount] = useState<number | null>(null);
   const [monsterSpawn, setMonsterSpawn] = useState(false);
+  const [monsterShake, setMonsterShake] = useState(false);
+  const [buttonSpawn, setButtonSpawn] = useState(false);
+  const [playerPhase, setPlayerPhase] = useState(false);
+  const [enemyPhase, setEnemyPhase] = useState(false);
+  const [flashRed, setFlashRed] = useState(false);
+  const [hearts, setHearts] = useState(5);
+  const [damage, showDamage] = useState<{
+    value: number | null;
+    id: number;
+  }>({ value: null, id: 0 });
+  const [monsterStance, setMonsterStance] = useState<
+    "fire" | "lightning" | "freeze" | "attack" | "idle"
+  >("idle");
+  const finalDamage = useRef(0);
+  const [gameOver, setGameOver] = useState(false);
 
   useEffect(() => {
     const spawnTimer = setTimeout(() => {
       setMonsterSpawn(true);
-    }, 11500);
+    }, 9000);
+
+    const monsterShakeTimer = setTimeout(() => {
+      handleMonsterShake();
+    }, 9000);
+
+    const buttonSpawnTimer = setTimeout(() => {
+      setButtonSpawn(true);
+    }, 9800);
+
+    const startPlayerPhase = setTimeout(() => {
+      setPlayerPhase(true);
+    }, 9800);
 
     const fetchCount = async () => {
       const { data, error } = await supabase
@@ -26,13 +57,52 @@ export default function MonsterLogic() {
     };
 
     fetchCount();
-    return () => clearTimeout(spawnTimer);
+    return () => {
+      clearTimeout(spawnTimer);
+      clearTimeout(buttonSpawnTimer);
+      clearTimeout(startPlayerPhase);
+      clearTimeout(monsterShakeTimer);
+    };
   }, []);
 
-  const handleClick = async () => {
+  useEffect(() => {
+    if (monsterStance != "idle") {
+      const stanceTimer = setTimeout(() => {
+        setMonsterStance("idle");
+      }, 1000);
+    }
+  }, [monsterStance]);
+
+  useEffect(() => {
+    if (hearts === 0) {
+      setGameOver(true);
+    }
+  });
+
+  const handleMonsterShake = () => {
+    setMonsterShake(true);
+    const shakeStop = setTimeout(() => {
+      setMonsterShake(false);
+    }, 500);
+  };
+
+  const handleEnemyPhase = () => {
+    const attackBuffer = setTimeout(() => {
+      setMonsterStance("attack");
+      setFlashRed(true);
+      setHearts(hearts - 1);
+    }, 1500);
+    const attackEnd = setTimeout(() => {
+      setMonsterStance("idle");
+      setPlayerPhase(true);
+      setFlashRed(false);
+    }, 2500);
+  };
+
+  const handleClick = async (damage: number, crit: boolean) => {
     if (count === null) return;
 
-    const newCount = count + 1;
+    const newCount = count + damage;
     setCount(newCount);
 
     const { error } = await supabase
@@ -43,61 +113,255 @@ export default function MonsterLogic() {
     if (error) {
       console.error("Failed to update count:", error);
     }
+    setWasCrit(crit);
+    handleEnemyPhase();
+    finalDamage.current += damage;
+    showDamage({ value: damage, id: Date.now() });
+    setTimeout(() => {
+      showDamage({ value: null, id: Date.now() + 1 });
+    }, 1000);
+  };
+
+  const castFire = () => {
+    const base = Math.floor(Math.random() * (35 - 15 + 1)) + 15;
+    const isCrit = Math.random() < 0.25;
+    const totalDamage = isCrit ? base * 2 : base;
+    handleClick(totalDamage, isCrit);
+  };
+
+  const castLightning = () => {
+    const base = Math.floor(Math.random() * (40 - 5 + 1)) + 5;
+    const isCrit = Math.random() < 0.35;
+    const totalDamage = isCrit ? base * 2 : base;
+    handleClick(totalDamage, isCrit);
   };
 
   return (
     <>
-      {/*
-
-    <div className="z-50 w-[700px] h-[500px] translate-y-[200px]">
-      <motion.button
-        className="w-[250px] h-[100px] bg-white rounded-xl border border-black"
-        onClick={handleClick}
-        whileTap={{ scale: 1.2 }}
-      >
-        Click me!
-      </motion.button>
-      <span className="text-lg font-medium">
-        Total clicks: {count ?? "Loading..."}
-      </span>
-    </div>
-    */}
-      <motion.div
-        className="inset-0 fixed w-screen h-screen"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={
-          monsterSpawn ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }
-        }
-        transition={{ duration: 0.2 }}
-      >
+      <motion.div className="inset-0 fixed w-screen h-screen">
+        {gameOver && (
+          <motion.div
+            className="inset-0 z-50 absolute bg-black"
+            onClick={() => {
+              router.push("/adventure");
+            }}
+          >
+            <p className="text-white text-4xl text-center translate-y-[300px]">
+              {" "}
+              You fled the forest. You dealt {finalDamage.current} damage to the
+              monster.
+            </p>
+          </motion.div>
+        )}
+        {flashRed && (
+          <motion.div
+            className="absolute pointer-events-none inset-0 bg-red-500 z-50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [1, 0] }}
+            transition={{ duration: 0.6 }}
+          ></motion.div>
+        )}
         <motion.div
-          animate={
-            monsterSpawn
-              ? { x: [0, -10, 10, -10, 10, 0], y: [0, 5, -5, 5, -5, 0] }
-              : {}
-          }
-          transition={{ duration: 0.4 }}
+          animate={{
+            opacity: monsterSpawn ? 1 : 0,
+            scale: monsterStance === "attack" ? 1.6 : 1,
+            x: monsterShake ? [0, -15, 15, -15, 15, 0] : 0,
+            y: monsterShake ? [0, 10, -10, 10, -10, 0] : 0,
+          }}
+          transition={{ duration: 0.3 }}
         >
           <Image
-            src="/monster-idle.png"
-            alt="monster idle"
+            src={
+              monsterStance === "fire"
+                ? "/monster-fire.png"
+                : monsterStance === "lightning"
+                ? "/monster-lightning.png"
+                : monsterStance === "freeze"
+                ? "/monster-freeze.png"
+                : monsterStance === "attack"
+                ? "/monster-attack.png"
+                : "/monster-idle.png"
+            }
+            alt="monster with stance"
             width={600}
             height={600}
             className="absolute w-[450px] h-[600px] left-1/2 -translate-x-[300px] translate-y-[50px]"
           ></Image>
         </motion.div>
+        <motion.a
+          className="absolute z-20 w-[110px] h-[30px] left-[20px] top-[20px] bg-gradient-to-br from-slate-300 to-slate-500 border-dotted border-3 shadow shadow-[0_0_10px_2px_rgba(255,255,255,1)] rounded-xl"
+          onClick={() => {
+            router.push("/adventure");
+          }}
+          whileHover={{ scale: 1.2 }}
+          initial={{ opacity: 0 }}
+          animate={buttonSpawn ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <p className="text-center ">Retreat!</p>
+        </motion.a>
+        <motion.div
+          className="flex flex-rows absolute z-20 right-0 top-0 w-[400px] h-[100px]"
+          initial={{ opacity: 0 }}
+          animate={buttonSpawn ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          <motion.div whileHover={{ scale: 1.2 }}>
+            <Image
+              src={hearts >= 1 ? "/heart-alive.png" : "/heart-dead.png"}
+              alt="heart"
+              width={200}
+              height={200}
+              className="w-[75px] h-[75px]"
+            ></Image>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.2 }}>
+            <Image
+              src={hearts >= 2 ? "/heart-alive.png" : "/heart-dead.png"}
+              alt="heart"
+              width={200}
+              height={200}
+              className="w-[75px] h-[75px]"
+            ></Image>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.2 }}>
+            <Image
+              src={hearts >= 3 ? "/heart-alive.png" : "/heart-dead.png"}
+              alt="heart"
+              width={200}
+              height={200}
+              className="w-[75px] h-[75px]"
+            ></Image>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.2 }}>
+            <Image
+              src={hearts >= 4 ? "/heart-alive.png" : "/heart-dead.png"}
+              alt="heart"
+              width={200}
+              height={200}
+              className="w-[75px] h-[75px]"
+            ></Image>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.2 }}>
+            <Image
+              src={hearts >= 5 ? "/heart-alive.png" : "/heart-dead.png"}
+              alt="heart"
+              width={200}
+              height={200}
+              className="w-[75px] h-[75px]"
+            ></Image>
+          </motion.div>
+        </motion.div>
+        <motion.p
+          key={damage.id}
+          style={
+            wasCrit
+              ? {
+                  fontSize: "75px",
+                  textShadow: "3px 3px 1px rgb(255, 255, 255)",
+                  color: "rgb(254, 54, 54)",
+                }
+              : {
+                  fontSize: "50px",
+                  textShadow: "2px 2px 1px rgb(0, 0, 0)",
+                  color: "rgb(196, 0, 0)",
+                }
+          }
+          className="absolute w-[30px] h-[30px] left-1/2 translate-x-[180px] top-1/2 translate-y-[-200px] text-5xl text-red-500"
+          initial={{ opacity: 1, scale: 1.3, y: 0 }}
+          animate={
+            damage != null
+              ? { opacity: 0, scale: [1.3, 1], y: -50 }
+              : { opacity: 1, scale: 1.3, y: 0 }
+          }
+          transition={{ duration: 1 }}
+        >
+          {damage.value}
+        </motion.p>
+        <div className="absolute w-[85px] h-[40px] translate-x-[253px] translate-y-[425px]">
+          <p className="text-[12px] text-center">
+            All-time dmg:{" "}
+            <span className="text-[16px]">{count ?? "Loading..."}</span>
+          </p>
+        </div>
+        <motion.div
+          className={`flex flex-col absolute items-start space-y-[25px] right-0 bottom-0 w-[400px] h-[400px] bg-white/45 border-t-3 border-l-3 border-white ${
+            playerPhase ? "" : "pointer-events-none"
+          }`}
+          initial={{ opacity: 0, scale: 1.75 }}
+          animate={
+            playerPhase ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 1.3 }
+          }
+          transition={{ duration: 0.3 }}
+        >
+          <button
+            className="text-3xl flex flex-col items-start pl-[15px] mt-[40px] hover:bg-red-400"
+            onClick={() => {
+              setMonsterStance("fire");
+              handleMonsterShake();
+              castFire();
+              setEnemyPhase(true);
+              setPlayerPhase(false);
+            }}
+          >
+            Fire!
+            <p className="text-lg text-left mr-[15px] ">
+              Burns the monster acrisp, dealing{" "}
+              <span style={{ textShadow: "1px 1px 1px rgba(255,255,255,1" }}>
+                15-35
+              </span>{" "}
+              base dmg, with a{" "}
+              <span style={{ textShadow: "1px 1px 1px rgba(255,0,0,1)" }}>
+                25%{" "}
+              </span>{" "}
+              chance to critically strike.
+            </p>
+          </button>
+          <button
+            className="text-3xl flex flex-col items-start pl-[15px] hover:bg-yellow-400"
+            onClick={() => {
+              setMonsterStance("lightning");
+              handleMonsterShake();
+              castLightning();
+              setEnemyPhase(true);
+              setPlayerPhase(false);
+            }}
+          >
+            Lightning!
+            <p className="text-lg text-left mr-[15px]">
+              Zaps with piercing voltage, dealing{" "}
+              <span style={{ textShadow: "1px 1px 1px rgba(255,255,255,1" }}>
+                5-40
+              </span>{" "}
+              base dmg, with a{" "}
+              <span style={{ textShadow: "1px 1px 1px rgba(255,0,0,1)" }}>
+                35%
+              </span>{" "}
+              chance to critically strike.
+            </p>
+          </button>
+          <button className="text-3xl flex flex-col items-start pl-[15px] hover:bg-cyan-400">
+            Freeze!
+            <p className="text-lg text-left mr-[15px]">
+              Unleashes a chilling blast, dealing{" "}
+              <span style={{ textShadow: "1px 1px 1px rgba(255,255,255,1" }}>
+                20-50
+              </span>{" "}
+              base dmg, with a{" "}
+              <span style={{ textShadow: "1px 1px 1px rgba(255,0,0,1)" }}>
+                5%
+              </span>{" "}
+              chance to critically strike.
+            </p>
+          </button>
+          <p
+            className={`${headingFont.className} absolute text-7xl text-white right-[52px] bottom-[365px]`}
+            style={{ textShadow: "5px 5px 1px rgba(0,0,0,1)" }}
+          >
+            Cast a Spell!
+          </p>
+        </motion.div>
       </motion.div>
-      <div className="flex flex-col absolute items-start space-y-[30px] right-0 bottom-0 w-[400px] h-[400px] bg-white/30 border border-3 border-white">
-        <button className="text-3xl ml-[15px] pt-[50px]">Fire!</button>
-        <button className="text-3xl ml-[15px] ">Lightning!</button>
-        <button className="text-3xl ml-[15px] ">Freeze!</button>
-      </div>
-      <p
-        className={`${headingFont.className} absolute text-7xl text-white right-[52px] bottom-[365px]`}
-        style={{ textShadow: "5px 5px 1px rgba(0,0,0,1)" }}
-      >
-        Cast a Spell!
-      </p>
     </>
   );
 }

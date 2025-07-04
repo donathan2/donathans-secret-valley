@@ -82,7 +82,7 @@ export default function AdventurePage() {
               </p>
             </motion.div>
           </motion.div>
-          {/* <motion.div
+          <motion.div
             className={`${headingFont.className} z-[12] absolute text-center w-[160px] h-[60px] border border-3 text-white text-5xl translate-y-[130px] left-1/2 translate-x-[205px] bg-gradient-to-br from-lime-300 to-lime-900 shadow-sm shadow-white rounded-xl`}
             style={{ textShadow: "4px 4px 1px rgba(0,0,0,1)" }}
             initial={{ opacity: 0, scale: 2 }}
@@ -99,7 +99,7 @@ export default function AdventurePage() {
             onClick={() => router.push("/adventure/forest")}
           >
             <p className="mt-[5px]">Enter!</p>
-          </motion.div> */}
+          </motion.div>
         </div>
       </main>
     </>
