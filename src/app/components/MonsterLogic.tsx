@@ -276,7 +276,11 @@ export default function MonsterLogic() {
     const base = Math.floor(Math.random() * (35 - 25 + 1)) + 25;
     const isCrit = Math.random() < 0.25;
     const totalDamage = isCrit ? base * 2 : base;
-    isCrit ? playFireCrit() : playFire();
+    if (isCrit) {
+      playFireCrit();
+    } else {
+      playFire();
+    }
     handleClick(totalDamage, isCrit);
   };
 
@@ -284,14 +288,22 @@ export default function MonsterLogic() {
     const base = Math.floor(Math.random() * (45 - 5 + 1)) + 5;
     const isCrit = Math.random() < 0.5;
     const totalDamage = isCrit ? base * 2 : base;
-    isCrit ? playLightningCrit() : playLightning();
+    if (isCrit) {
+      playLightningCrit();
+    } else {
+      playLightning();
+    }
     handleClick(totalDamage, isCrit);
   };
   const castFreeze = () => {
     const base = Math.floor(Math.random() * (50 - 20 + 1)) + 20;
     const isCrit = Math.random() < 0.1;
     const totalDamage = isCrit ? base * 2 : base;
-    isCrit ? playFreezeCrit() : playFreeze();
+    if (isCrit) {
+      playFreezeCrit();
+    } else {
+      playFreeze();
+    }
     handleClick(totalDamage, isCrit);
   };
 
