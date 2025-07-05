@@ -28,8 +28,116 @@ export default function MonsterLogic() {
   const finalDamage = useRef(0);
   const [gameOver, setGameOver] = useState(false);
 
+  // SOUNDS
+  const bgmRef = useRef<HTMLAudioElement | null>(null);
+  const gameOverRef = useRef<HTMLAudioElement | null>(null);
+
+  const playFire = () => {
+    const fire = new Audio("/fire-sfx.wav");
+    fire.volume = 0.8;
+    fire.play().catch((err) => {
+      console.warn("SFX autoplay failed:", err);
+    });
+  };
+
+  const playFireCrit = () => {
+    const fire = new Audio("/fire-crit-sfx.wav");
+    fire.volume = 0.7;
+    fire.play().catch((err) => {
+      console.warn("SFX autoplay failed:", err);
+    });
+  };
+
+  const playLightning = () => {
+    const lightning = new Audio("/lightning-sfx.wav");
+    lightning.volume = 0.8;
+    lightning.play().catch((err) => {
+      console.warn("SFX autoplay failed:", err);
+    });
+  };
+
+  const playLightningCrit = () => {
+    const lightning = new Audio("/lightning-crit-sfx.wav");
+    lightning.volume = 0.6;
+    lightning.play().catch((err) => {
+      console.warn("SFX autoplay failed:", err);
+    });
+  };
+
+  const playFreeze = () => {
+    const freeze = new Audio("/freeze-sfx.wav");
+    freeze.volume = 0.6;
+    freeze.play().catch((err) => {
+      console.warn("SFX autoplay failed:", err);
+    });
+  };
+
+  const playFreezeCrit = () => {
+    const freeze = new Audio("/freeze-crit-sfx.wav");
+    freeze.volume = 0.6;
+    freeze.play().catch((err) => {
+      console.warn("SFX autoplay failed:", err);
+    });
+  };
+
+  const playAttacked = () => {
+    const attacked = new Audio("/monster-attack.wav");
+    attacked.volume = 0.8;
+    attacked.play().catch((err) => {
+      console.warn("SFX autoplay failed:", err);
+    });
+  };
+
+  const playAttackedOneHP = () => {
+    const attacked = new Audio("/monster-1hp.wav");
+    attacked.volume = 0.8;
+    attacked.play().catch((err) => {
+      console.warn("SFX autoplay failed:", err);
+    });
+  };
+
+  const playAttackedFatal = () => {
+    const attacked = new Audio("/monster-fatal.wav");
+    attacked.volume = 0.8;
+    attacked.play().catch((err) => {
+      console.warn("SFX autoplay failed:", err);
+    });
+  };
+
+  const playFireHover = () => {
+    const fire = new Audio("/fire-hover.wav");
+    fire.volume = 0.8;
+    fire.play().catch((err) => {
+      console.warn("SFX autoplay failed:", err);
+    });
+  };
+
+  const playLightningHover = () => {
+    const lightning = new Audio("/lightning-hover.wav");
+    lightning.volume = 0.8;
+    lightning.play().catch((err) => {
+      console.warn("SFX autoplay failed:", err);
+    });
+  };
+
+  const playFreezeHover = () => {
+    const freeze = new Audio("/freeze-hover.wav");
+    freeze.volume = 0.8;
+    freeze.play().catch((err) => {
+      console.warn("SFX autoplay failed:", err);
+    });
+  };
+
   useEffect(() => {
     const spawnTimer = setTimeout(() => {
+      const bgm = new Audio("/battle-theme.mp3");
+      bgm.loop = true;
+      bgm.volume = 0.4;
+      bgm.play().catch((e) => {
+        console.warn("Autoplay failed:", e);
+      });
+      bgmRef.current = bgm;
+
       setMonsterSpawn(true);
     }, 8800);
 
@@ -61,6 +169,12 @@ export default function MonsterLogic() {
       clearTimeout(buttonSpawnTimer);
       clearTimeout(startPlayerPhase);
       clearTimeout(monsterShakeTimer);
+
+      if (bgmRef.current) {
+        bgmRef.current.pause();
+        bgmRef.current.currentTime = 0;
+        bgmRef.current = null;
+      }
     };
   }, []);
 
@@ -88,11 +202,48 @@ export default function MonsterLogic() {
     return () => clearTimeout(shakeStop);
   };
 
+  useEffect(() => {
+    if (!gameOver) return;
+
+    if (bgmRef.current) {
+      bgmRef.current.pause();
+      bgmRef.current.currentTime = 0;
+      bgmRef.current = null;
+    }
+    const gameOverBgm = new Audio("/game-over.wav");
+    gameOverBgm.volume = 0.4;
+    gameOverBgm.loop = false;
+    gameOverBgm.play().catch((e) => {
+      console.warn("Autoplay failed:", e);
+    });
+    gameOverRef.current = gameOverBgm;
+
+    return () => {
+      if (gameOverRef.current) {
+        gameOverRef.current.pause();
+        gameOverRef.current.currentTime = 0;
+        gameOverRef.current = null;
+      }
+    };
+  }, [gameOver]);
+
   const handleEnemyPhase = () => {
     const attackBuffer = setTimeout(() => {
       setMonsterStance("attack");
       setFlashRed(true);
-      setHearts((prev) => prev - 1);
+      setHearts((prev) => {
+        const newHearts = prev - 1;
+
+        if (newHearts <= 0) {
+          playAttackedFatal();
+        } else if (newHearts === 1) {
+          playAttackedOneHP();
+        } else {
+          playAttacked();
+        }
+
+        return newHearts;
+      });
     }, 1500);
     const attackEnd = setTimeout(() => {
       setMonsterStance("idle");
@@ -133,6 +284,7 @@ export default function MonsterLogic() {
     const base = Math.floor(Math.random() * (35 - 25 + 1)) + 25;
     const isCrit = Math.random() < 0.25;
     const totalDamage = isCrit ? base * 2 : base;
+    isCrit ? playFireCrit() : playFire();
     handleClick(totalDamage, isCrit);
   };
 
@@ -140,12 +292,14 @@ export default function MonsterLogic() {
     const base = Math.floor(Math.random() * (45 - 5 + 1)) + 5;
     const isCrit = Math.random() < 0.5;
     const totalDamage = isCrit ? base * 2 : base;
+    isCrit ? playLightningCrit() : playLightning();
     handleClick(totalDamage, isCrit);
   };
   const castFreeze = () => {
     const base = Math.floor(Math.random() * (50 - 20 + 1)) + 20;
     const isCrit = Math.random() < 0.1;
     const totalDamage = isCrit ? base * 2 : base;
+    isCrit ? playFreezeCrit() : playFreeze();
     handleClick(totalDamage, isCrit);
   };
 
@@ -291,7 +445,7 @@ export default function MonsterLogic() {
         >
           {damage.value}
         </motion.p>
-        <div className="absolute w-[85px] h-[40px] translate-x-[253px] translate-y-[425px]">
+        <div className="absolute w-[85px] h-[40px] translate-x-[249px] translate-y-[425px]">
           <p className="text-[12px] text-center">
             All-time dmg:{" "}
             <span className="text-[16px]">{count ?? "Loading..."}</span>
@@ -309,6 +463,9 @@ export default function MonsterLogic() {
         >
           <button
             className="text-3xl flex flex-col items-start pl-[15px] mt-[40px] hover:bg-red-400"
+            onMouseEnter={() => {
+              playFireHover();
+            }}
             onClick={() => {
               setMonsterStance("fire");
               handleMonsterShake();
@@ -331,6 +488,9 @@ export default function MonsterLogic() {
           </button>
           <button
             className="text-3xl flex flex-col items-start pl-[15px] hover:bg-yellow-400"
+            onMouseEnter={() => {
+              playLightningHover();
+            }}
             onClick={() => {
               setMonsterStance("lightning");
               handleMonsterShake();
@@ -353,6 +513,9 @@ export default function MonsterLogic() {
           </button>
           <button
             className="text-3xl flex flex-col items-start pl-[15px] hover:bg-cyan-400"
+            onMouseEnter={() => {
+              playFreezeHover();
+            }}
             onClick={() => {
               setMonsterStance("freeze");
               handleMonsterShake();

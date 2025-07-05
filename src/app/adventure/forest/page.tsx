@@ -36,12 +36,13 @@ export default function ForestPage() {
   return (
     <>
       <MouseFollower></MouseFollower>
-      <div className="relative w-full h-screen overflow-x-hidden">
+      <div className="inset-0 fixed z-[-1] bg-black"></div>
+      <div className="fixed w-full translate-x-[-2px] h-screen overflow-x-hidden">
         <Image
           src="/forest.png"
           alt="forest background"
           fill
-          className="object-cover translate-x-[3px] absolute inset-0 z-0 pointer-events-none shadow-[0_0_100px_100px_rgba(0,0,0,0.4)]"
+          className="object-cover object-center absolute inset-0 z-0 pointer-events-none shadow-[0_0_100px_100px_rgba(0,0,0,0.4)]"
         />
 
         <motion.div
