@@ -48,7 +48,7 @@ export default function AdventurePage() {
             <p className="text-center text-xl m-[30px] mt-[45px]">
               This is a &quot;junk ground&quot; for random code that isn&apos;t
               big enough to constitute an actual project, or just any kind of
-              whatever for-fun stuff. WIP
+              whatever for-fun stuff.
             </p>
           </motion.div>
         </div>
@@ -83,7 +83,7 @@ export default function AdventurePage() {
             </motion.div>
           </motion.div>
           <motion.div
-            className={`${headingFont.className} z-[12] absolute text-center w-[160px] h-[60px] border border-3 text-white text-5xl translate-y-[130px] left-1/2 translate-x-[205px] bg-gradient-to-br from-lime-300 to-lime-900 shadow-sm shadow-white rounded-xl`}
+            className={`${headingFont.className} z-[12] absolute text-center w-[160px] h-[60px] border border-2 text-white text-5xl translate-y-[130px] left-1/2 translate-x-[205px] bg-gradient-to-br from-lime-300 to-lime-900 shadow-sm shadow-white rounded-xl`}
             style={{ textShadow: "4px 4px 1px rgba(0,0,0,1)" }}
             initial={{ opacity: 0, scale: 2 }}
             animate={{ opacity: 1, scale: 1 }}

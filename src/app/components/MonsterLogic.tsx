@@ -16,7 +16,6 @@ export default function MonsterLogic() {
   const [monsterShake, setMonsterShake] = useState(false);
   const [buttonSpawn, setButtonSpawn] = useState(false);
   const [playerPhase, setPlayerPhase] = useState(false);
-  const [enemyPhase, setEnemyPhase] = useState(false);
   const [flashRed, setFlashRed] = useState(false);
   const [hearts, setHearts] = useState(5);
   const [damage, showDamage] = useState<{
@@ -32,19 +31,19 @@ export default function MonsterLogic() {
   useEffect(() => {
     const spawnTimer = setTimeout(() => {
       setMonsterSpawn(true);
-    }, 9000);
+    }, 8800);
 
     const monsterShakeTimer = setTimeout(() => {
       handleMonsterShake();
-    }, 9000);
+    }, 8800);
 
     const buttonSpawnTimer = setTimeout(() => {
       setButtonSpawn(true);
-    }, 9800);
+    }, 9600);
 
     const startPlayerPhase = setTimeout(() => {
       setPlayerPhase(true);
-    }, 9800);
+    }, 9600);
 
     const fetchCount = async () => {
       const { data, error } = await supabase
@@ -70,6 +69,7 @@ export default function MonsterLogic() {
       const stanceTimer = setTimeout(() => {
         setMonsterStance("idle");
       }, 1000);
+      return () => clearTimeout(stanceTimer);
     }
   }, [monsterStance]);
 
@@ -77,26 +77,33 @@ export default function MonsterLogic() {
     if (hearts === 0) {
       setGameOver(true);
     }
-  });
+  }, [hearts]);
 
   const handleMonsterShake = () => {
     setMonsterShake(true);
     const shakeStop = setTimeout(() => {
       setMonsterShake(false);
     }, 500);
+
+    return () => clearTimeout(shakeStop);
   };
 
   const handleEnemyPhase = () => {
     const attackBuffer = setTimeout(() => {
       setMonsterStance("attack");
       setFlashRed(true);
-      setHearts(hearts - 1);
+      setHearts((prev) => prev - 1);
     }, 1500);
     const attackEnd = setTimeout(() => {
       setMonsterStance("idle");
       setPlayerPhase(true);
       setFlashRed(false);
     }, 2500);
+
+    return () => {
+      clearTimeout(attackBuffer);
+      clearTimeout(attackEnd);
+    };
   };
 
   const handleClick = async (damage: number, crit: boolean) => {
@@ -123,15 +130,21 @@ export default function MonsterLogic() {
   };
 
   const castFire = () => {
-    const base = Math.floor(Math.random() * (35 - 15 + 1)) + 15;
+    const base = Math.floor(Math.random() * (35 - 25 + 1)) + 25;
     const isCrit = Math.random() < 0.25;
     const totalDamage = isCrit ? base * 2 : base;
     handleClick(totalDamage, isCrit);
   };
 
   const castLightning = () => {
-    const base = Math.floor(Math.random() * (40 - 5 + 1)) + 5;
-    const isCrit = Math.random() < 0.35;
+    const base = Math.floor(Math.random() * (45 - 5 + 1)) + 5;
+    const isCrit = Math.random() < 0.5;
+    const totalDamage = isCrit ? base * 2 : base;
+    handleClick(totalDamage, isCrit);
+  };
+  const castFreeze = () => {
+    const base = Math.floor(Math.random() * (50 - 20 + 1)) + 20;
+    const isCrit = Math.random() < 0.1;
     const totalDamage = isCrit ? base * 2 : base;
     handleClick(totalDamage, isCrit);
   };
@@ -189,7 +202,7 @@ export default function MonsterLogic() {
           ></Image>
         </motion.div>
         <motion.a
-          className="absolute z-20 w-[110px] h-[30px] left-[20px] top-[20px] bg-gradient-to-br from-slate-300 to-slate-500 border-dotted border-3 shadow shadow-[0_0_10px_2px_rgba(255,255,255,1)] rounded-xl"
+          className="absolute z-20 w-[110px] h-[30px] left-[20px] top-[20px] bg-gradient-to-br from-slate-300 to-slate-500 border border-white/50 border-2 shadow shadow-[0_0_5px_1px_rgba(255,255,255,1)] rounded-xl"
           onClick={() => {
             router.push("/adventure");
           }}
@@ -300,7 +313,6 @@ export default function MonsterLogic() {
               setMonsterStance("fire");
               handleMonsterShake();
               castFire();
-              setEnemyPhase(true);
               setPlayerPhase(false);
             }}
           >
@@ -308,7 +320,7 @@ export default function MonsterLogic() {
             <p className="text-lg text-left mr-[15px] ">
               Burns the monster acrisp, dealing{" "}
               <span style={{ textShadow: "1px 1px 1px rgba(255,255,255,1" }}>
-                15-35
+                25-35
               </span>{" "}
               base dmg, with a{" "}
               <span style={{ textShadow: "1px 1px 1px rgba(255,0,0,1)" }}>
@@ -323,7 +335,6 @@ export default function MonsterLogic() {
               setMonsterStance("lightning");
               handleMonsterShake();
               castLightning();
-              setEnemyPhase(true);
               setPlayerPhase(false);
             }}
           >
@@ -331,16 +342,24 @@ export default function MonsterLogic() {
             <p className="text-lg text-left mr-[15px]">
               Zaps with piercing voltage, dealing{" "}
               <span style={{ textShadow: "1px 1px 1px rgba(255,255,255,1" }}>
-                5-40
+                5-45
               </span>{" "}
               base dmg, with a{" "}
               <span style={{ textShadow: "1px 1px 1px rgba(255,0,0,1)" }}>
-                35%
+                50%
               </span>{" "}
               chance to critically strike.
             </p>
           </button>
-          <button className="text-3xl flex flex-col items-start pl-[15px] hover:bg-cyan-400">
+          <button
+            className="text-3xl flex flex-col items-start pl-[15px] hover:bg-cyan-400"
+            onClick={() => {
+              setMonsterStance("freeze");
+              handleMonsterShake();
+              castFreeze();
+              setPlayerPhase(false);
+            }}
+          >
             Freeze!
             <p className="text-lg text-left mr-[15px]">
               Unleashes a chilling blast, dealing{" "}
@@ -349,7 +368,7 @@ export default function MonsterLogic() {
               </span>{" "}
               base dmg, with a{" "}
               <span style={{ textShadow: "1px 1px 1px rgba(255,0,0,1)" }}>
-                5%
+                10%
               </span>{" "}
               chance to critically strike.
             </p>

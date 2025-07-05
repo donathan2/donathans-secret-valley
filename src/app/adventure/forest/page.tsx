@@ -18,11 +18,11 @@ export default function ForestPage() {
 
     const textFadeOutTimer = setTimeout(() => {
       setTextFadeOut(true);
-    }, 7000);
+    }, 6800);
 
     const fadeTimer = setTimeout(() => {
       setFade(true);
-    }, 7500);
+    }, 7300);
 
     return () => {
       clearTimeout(fadeTimer);
