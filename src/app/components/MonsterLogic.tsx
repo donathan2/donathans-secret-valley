@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { supabase } from "../lib/supabase";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { headingFont } from "../lib/fonts";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
 
 export default function MonsterLogic() {
   const [wasCrit, setWasCrit] = useState(false);
@@ -195,11 +194,9 @@ export default function MonsterLogic() {
 
   const handleMonsterShake = () => {
     setMonsterShake(true);
-    const shakeStop = setTimeout(() => {
+    setTimeout(() => {
       setMonsterShake(false);
     }, 500);
-
-    return () => clearTimeout(shakeStop);
   };
 
   useEffect(() => {
@@ -228,7 +225,7 @@ export default function MonsterLogic() {
   }, [gameOver]);
 
   const handleEnemyPhase = () => {
-    const attackBuffer = setTimeout(() => {
+    setTimeout(() => {
       setMonsterStance("attack");
       setFlashRed(true);
       setHearts((prev) => {
@@ -245,16 +242,11 @@ export default function MonsterLogic() {
         return newHearts;
       });
     }, 1500);
-    const attackEnd = setTimeout(() => {
+    setTimeout(() => {
       setMonsterStance("idle");
       setPlayerPhase(true);
       setFlashRed(false);
     }, 2500);
-
-    return () => {
-      clearTimeout(attackBuffer);
-      clearTimeout(attackEnd);
-    };
   };
 
   const handleClick = async (damage: number, crit: boolean) => {
