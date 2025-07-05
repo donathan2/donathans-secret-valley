@@ -65,7 +65,7 @@ export default function ForestPage() {
             transition={{ duration: 0.7 }}
           >
             <p className="text-center text-2xl text-white">
-              A suffocating silence blankets the woods, only interrupted by the
+              A suffocating silence fills the woods, only interrupted by the
               stomping of brittle leaves and your heavy breaths. Fatigued, you
               sense an oncoming presence. Someone is near.
             </p>
