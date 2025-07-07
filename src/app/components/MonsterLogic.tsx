@@ -22,7 +22,6 @@ import {
   playHealPot,
   playCorrode,
   playCorrupt,
-  playAlert,
   playDominionAtk,
   playChaos,
   playMementoUse,
@@ -141,23 +140,9 @@ export default function MonsterLogic() {
   }, [hearts]);
 
   useEffect(() => {
-    const alarmTimer = setTimeout(() => {
-      if (hearts === 1) {
-        setFlashRed(true);
-        playAlert();
-      }
-    }, 1200);
-    const redTimer = setTimeout(() => {
-      setFlashRed(false);
-    }, 3000);
-
     if (hearts === 0) {
       setGameOver(true);
     }
-    return () => {
-      clearTimeout(alarmTimer);
-      clearTimeout(redTimer);
-    };
   }, [hearts]);
 
   const handleMonsterShake = () => {
