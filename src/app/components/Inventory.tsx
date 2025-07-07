@@ -6,13 +6,13 @@ import { playInvOpen, playItemHover } from "../lib/sounds";
 
 type InventoryProps = {
   items: number[];
-  useItem: (index: number) => void;
-  pastElement: String;
+  handleUseItem: (index: number) => void;
+  pastElement: string;
 };
 
 export default function Inventory({
   items,
-  useItem,
+  handleUseItem,
   pastElement,
 }: InventoryProps) {
   return (
@@ -35,9 +35,11 @@ export default function Inventory({
             width={200}
             height={200}
             className="w-[100px] h-[100px] peer"
-            onClick={() => items[0] === 1 && useItem(0)}
+            onClick={() => items[0] === 1 && handleUseItem(0)}
             onMouseEnter={() => {
-              items[0] === 1 && playItemHover();
+              if (items[0] === 1) {
+                playItemHover();
+              }
             }}
           ></Image>
           {items[0] === 1 && (
@@ -64,9 +66,11 @@ export default function Inventory({
             width={200}
             height={200}
             className="w-[100px] h-[100px] peer"
-            onClick={() => items[1] === 1 && useItem(1)}
+            onClick={() => items[1] === 1 && handleUseItem(1)}
             onMouseEnter={() => {
-              items[1] === 1 && playItemHover();
+              if (items[1] === 1) {
+                playItemHover();
+              }
             }}
           ></Image>
           {items[1] === 1 && (
@@ -96,9 +100,11 @@ export default function Inventory({
             width={200}
             height={200}
             className="w-[100px] h-[100px] peer"
-            onClick={() => items[2] === 1 && useItem(2)}
+            onClick={() => items[2] === 1 && handleUseItem(2)}
             onMouseEnter={() => {
-              items[2] === 1 && playItemHover();
+              if (items[2] === 1) {
+                playItemHover();
+              }
             }}
           ></Image>
           {items[2] === 1 && (
@@ -124,9 +130,11 @@ export default function Inventory({
             width={200}
             height={200}
             className="w-[100px] h-[100px] peer"
-            onClick={() => items[3] === 1 && useItem(3)}
+            onClick={() => items[3] === 1 && handleUseItem(3)}
             onMouseEnter={() => {
-              items[3] === 1 && playItemHover();
+              if (items[3] === 1) {
+                playItemHover();
+              }
             }}
           ></Image>
           {items[3] === 1 && (
@@ -182,9 +190,11 @@ export default function Inventory({
             width={200}
             height={200}
             className="w-[100px] h-[100px] peer"
-            onClick={() => items[4] === 1 && useItem(4)}
+            onClick={() => items[4] === 1 && handleUseItem(4)}
             onMouseEnter={() => {
-              items[4] === 1 && playItemHover();
+              if (items[4] === 1) {
+                playItemHover();
+              }
             }}
           ></Image>
           {items[4] === 1 && (
@@ -193,7 +203,7 @@ export default function Inventory({
                 Guardian&apos;s Will
               </p>
               <p className="pl-5 pr-5 pb-5">
-                Harness the archangel's triumphant blessing.{" "}
+                Harness the archangel&apos;s triumphant blessing.{" "}
                 <span style={{ textShadow: "1px 1px 1px rgb(146, 181, 177)" }}>
                   Grants a 65% chance to block each of the monster&apos;s next 2
                   attacks.{" "}

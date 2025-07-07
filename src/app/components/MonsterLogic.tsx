@@ -197,7 +197,7 @@ export default function MonsterLogic() {
     handleVictory();
   }, [victory]);
 
-  const useItem = (id: number) => {
+  const handleUseItem = (id: number) => {
     if (!alreadyUsed) {
       setItems((prevItems) => {
         const newItems = [...prevItems];
@@ -599,7 +599,7 @@ export default function MonsterLogic() {
         >
           <Inventory
             items={items}
-            useItem={useItem}
+            handleUseItem={handleUseItem}
             pastElement={prevElement}
           ></Inventory>
         </motion.div>
