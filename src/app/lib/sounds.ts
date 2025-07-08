@@ -14,7 +14,7 @@ export const playLightningCrit = () => playSFX("/lightning-crit-sfx.wav", 0.6);
 export const playFreeze = () => playSFX("/freeze-sfx.wav", 0.6);
 export const playFreezeCrit = () => playSFX("/freeze-crit-sfx.wav", 0.6);
 export const playAttacked = () => playSFX("/monster-attack.wav", 0.8);
-export const playAttackedOneHP = () => playSFX("/monster-1hp.wav", 0.4);
+export const playAttackedOneHP = () => playSFX("/monster-1hp.wav", 0.5);
 export const playAttackedFatal = () => playSFX("/monster-fatal.wav", 0.4);
 export const playSpellHover = () => playSFX("/fire-hover.wav", 0.8);
 
@@ -29,6 +29,6 @@ export const playInvOpen = () => playSFX("/freeze-hover.wav", 0.7);
 export const playMementoUse = () => playSFX("/memento-use.wav", 0.7);
 export const playUnravelUse = () => playSFX("/unravel-use.wav", 0.7);
 export const playShieldProc = () => playSFX("/shield-activate.wav", 1);
-export const playShieldUse = () => playSFX("/shield-use.wav", 1);
+export const playShieldUse = () => playSFX("/shield-use.wav", 0.9);
 export const playDominionUse = () => playSFX("/dominion-use.wav", 0.7);
 export const playMementoAtk = () => playSFX("/memento-atk.wav", 1);
