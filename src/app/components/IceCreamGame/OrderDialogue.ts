@@ -6,7 +6,7 @@ type props = {
   popsicleFlavor: string;
 };
 
-export default function OrderDialogue({
+export default function orderDialogue({
   type,
   scoopCount,
   flavors,
@@ -28,6 +28,7 @@ export default function OrderDialogue({
     "I'm craving something sweet!",
     "Howdy partner.",
     "I spent this entire morning swimming down that river.",
+    "What a beautiful morning!",
   ];
 
   //order details
@@ -62,7 +63,7 @@ export default function OrderDialogue({
 
   //topping dialogue
   const toppingOrders = [
-    `Oh, and I can have ${topping} on top? You're the best!`,
+    `Oh, and can I have ${topping} on top? You're the best!`,
     `And ${topping} with that would be amazinggg. Thank you!`,
     `Also, I'd love you even more if you put ${topping} on top. Thanks!`,
     `For toppings, I'd just like ${topping} on top. My favorite!`,
@@ -97,5 +98,5 @@ export default function OrderDialogue({
       completedDialogue += randomFromArray(toppingOrders);
     }
   }
-  return <div> {completedDialogue} </div>;
+  return completedDialogue
 }

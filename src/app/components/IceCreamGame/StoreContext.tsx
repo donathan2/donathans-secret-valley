@@ -4,11 +4,11 @@ export type Order = {
   id: number;
   desired: IceCream;
   customer: string;
-  status: "reading" | "in-progress" | "completed";
+  status: "new" | "reading" | "in-progress" | "completed";
 };
 
 export type IceCream = {
-  type: "cone" | "chocolate cone" | "cup" | "popsicle" | "none";
+  type: "normal cone" | "chocolate cone" | "cup" | "popsicle" | "none";
   scoopCount: number;
   flavor: string[];
   topping: string;
@@ -20,6 +20,14 @@ type GameContextBase = {
   setCurrentOrder: (ord: Order | null) => void;
   currentIceCream: IceCream;
   setCurrentIceCream: (ic: IceCream) => void;
+  currentCustomer: string;
+  setCurrentCustomer: (cust: string) => void;
+  dialogue: string;
+  setDialogue: (dia: string) => void;
+  delay: boolean;
+  setDelay: (dia: boolean) => void;
+  spoken: boolean;
+  setSpoken: (spok: boolean) => void;
 };
 
 const GameContext = createContext<GameContextBase | undefined>(undefined);
@@ -33,6 +41,12 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     topping: "",
     popsicleFlavor: "",
   });
+  const [currentCustomer, setCurrentCustomer] = useState<string>(
+    "/customer1-idle.gif"
+  );
+  const [dialogue, setDialogue] = useState("");
+  const [delay, setDelay] = useState(false);
+  const [spoken, setSpoken] = useState(false);
 
   return (
     <GameContext.Provider
@@ -41,6 +55,14 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         setCurrentOrder,
         currentIceCream,
         setCurrentIceCream,
+        currentCustomer,
+        setCurrentCustomer,
+        dialogue,
+        setDialogue,
+        delay,
+        setDelay,
+        spoken,
+        setSpoken,
       }}
     >
       {children}
