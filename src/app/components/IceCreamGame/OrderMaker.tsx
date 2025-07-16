@@ -64,7 +64,7 @@ export default function OrderMaker() {
       "some rainbow sprinkles",
       "some chocolate syrup",
       "some whipped cream",
-      "some marshmallows",
+      "some chocolate chips",
     ];
     const popsicleFlavors = [
       "strawberry",

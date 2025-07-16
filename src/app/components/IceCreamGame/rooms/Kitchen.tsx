@@ -9,7 +9,7 @@ type Props = {
 const Kitchen: React.FC<Props> = ({ onNavigate }) => {
   return (
     <>
-      <div className="absolute w-full h-full bg-[url('/kitchen.png')] bg-cover"></div>
+      <div className="absolute w-full h-full bg-[url('/kitchen.png')] bg-cover scale-x-[-1]"></div>
       <motion.div
         className="absolute w-[20%] h-[20%] left-0 top-0 translate-y-[-20%]"
         initial={{ y: -200 }}
