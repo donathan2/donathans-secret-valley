@@ -2,8 +2,12 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import useDisplayManager from "./DisplayManager";
+import { useGame } from "./StoreContext";
 
 export default function Selectables() {
+  const { displayManager } = useDisplayManager();
+  const { base } = useGame();
   return (
     <>
       {/*SHELVES*/}
@@ -17,12 +21,14 @@ export default function Selectables() {
         <motion.div
           className="absolute w-[18%] h-[75%] left-[15%] bottom-[30%]"
           whileHover={{ scale: 1.1, y: -20 }}
+          onClick={() => displayManager("rainbow sprinkles")}
         >
           <Image src="/sprinkler.png" alt="rainbow sprinkles" fill></Image>
         </motion.div>
         <motion.div
           className="absolute w-[18%] h-[75%] right-[41%] bottom-[30%]"
           whileHover={{ scale: 1.1, y: -20 }}
+          onClick={() => displayManager("chocolate chips")}
         >
           <Image
             src="/chocolate-sprinkler.png"
@@ -33,6 +39,7 @@ export default function Selectables() {
         <motion.div
           className="absolute w-[22%] h-[100%] right-[12%] bottom-[28%]"
           whileHover={{ scale: 1.1, y: -20 }}
+          onClick={() => displayManager("chocolate sauce")}
         >
           <Image src="/chocolate-sauce.png" alt="chocolate sauce" fill></Image>
         </motion.div>
@@ -47,12 +54,14 @@ export default function Selectables() {
         <motion.div
           className="absolute w-[45%] h-[90%] left-[16%] bottom-[31%]"
           whileHover={{ scale: 1.1, y: -20 }}
+          onClick={() => displayManager("cherry")}
         >
           <Image src="/cherry-bowl.png" alt="cherry bowl" fill></Image>
         </motion.div>
         <motion.div
           className="absolute w-[21%] h-[100%] right-[15%] bottom-[30%]"
           whileHover={{ scale: 1.1, y: -20 }}
+          onClick={() => displayManager("whipped cream")}
         >
           <Image
             src="/whipped-spray.png"
@@ -75,6 +84,7 @@ export default function Selectables() {
           scale: 1.1,
           transition: { type: "spring", stiffness: 400 },
         }}
+        onClick={() => displayManager("vanilla")}
       >
         <Image src="/vanilla.png" alt="vanilla" fill></Image>
       </motion.div>
@@ -90,6 +100,7 @@ export default function Selectables() {
           scale: 1.1,
           transition: { type: "spring", stiffness: 400 },
         }}
+        onClick={() => displayManager("chocolate")}
       >
         <Image src="/chocolate.png" alt="chocolate" fill></Image>
       </motion.div>
@@ -105,6 +116,7 @@ export default function Selectables() {
           scale: 1.1,
           transition: { type: "spring", stiffness: 400 },
         }}
+        onClick={() => displayManager("strawberry")}
       >
         <Image src="/strawberry.png" alt="strawberry" fill></Image>
       </motion.div>
@@ -120,6 +132,7 @@ export default function Selectables() {
           scale: 1.1,
           transition: { type: "spring", stiffness: 400 },
         }}
+        onClick={() => displayManager("mint choco")}
       >
         <Image src="/mint-choco.png" alt="mint choc" fill></Image>
       </motion.div>
@@ -135,6 +148,7 @@ export default function Selectables() {
           scale: 1.1,
           transition: { type: "spring", stiffness: 400 },
         }}
+        onClick={() => displayManager("birthday cake")}
       >
         <Image src="/birthday-cake.png" alt="birthday" fill></Image>
       </motion.div>
@@ -150,6 +164,7 @@ export default function Selectables() {
           scale: 1.1,
           transition: { type: "spring", stiffness: 400 },
         }}
+        onClick={() => displayManager("cotton candy")}
       >
         <Image src="/cotton-candy.png" alt="cotton candy" fill></Image>
       </motion.div>
@@ -165,6 +180,7 @@ export default function Selectables() {
           scale: 1.1,
           transition: { type: "spring", stiffness: 400 },
         }}
+        onClick={() => displayManager("matcha")}
       >
         <Image src="/matcha.png" alt="matcha" fill></Image>
       </motion.div>
@@ -180,6 +196,7 @@ export default function Selectables() {
           scale: 1.1,
           transition: { type: "spring", stiffness: 400 },
         }}
+        onClick={() => displayManager("mango")}
       >
         <Image src="/mango.png" alt="mango" fill></Image>
       </motion.div>
@@ -195,26 +212,34 @@ export default function Selectables() {
           scale: 1.1,
           transition: { type: "spring", stiffness: 400 },
         }}
+        onClick={() => displayManager("cookies and cream")}
       >
         <Image src="/cookies-cream.png" alt="cookies and cream" fill></Image>
       </motion.div>
 
-      {/* CONE STANDS */}
+      {/* CONE/CUPS */}
       <motion.div
-        className="absolute w-[11%] h-[30%] left-[2%] bottom-[44%]"
+        className="absolute w-[11%] h-[30%] left-[9%] bottom-[43%]"
         initial={{ x: -300 }}
         animate={{ x: 0 }}
         whileHover={{ scale: 1.1, y: -30 }}
         transition={{
-          x: { type: "spring", damping: 20, delay: 0.1 },
+          x: { type: "spring", damping: 20, delay: 0.05 },
           scale: { type: "spring", stiffness: 200 },
           y: { type: "spring", stiffness: 200 },
         }}
+        onClick={() => displayManager("normal cone")}
       >
-        <Image src="/stand-normal.png" alt="normal cone stand" fill />
+        <Image
+          src={`${
+            base !== "normal cone" ? "/stand-normal.png" : "/placeholder.png"
+          }`}
+          alt="normal cone stand"
+          fill
+        />
       </motion.div>
       <motion.div
-        className="absolute w-[11%] h-[30%] left-[13%] bottom-[44%]"
+        className="absolute w-[11%] h-[30%] left-[20%] bottom-[44%]"
         initial={{ x: -300 }}
         animate={{ x: 0 }}
         whileHover={{ scale: 1.1, y: -30 }}
@@ -223,10 +248,33 @@ export default function Selectables() {
           scale: { type: "spring", stiffness: 200 },
           y: { type: "spring", stiffness: 200 },
         }}
+        onClick={() => displayManager("chocolate cone")}
       >
         <Image
-          src="/stand-chocolate.png"
+          src={`${
+            base !== "chocolate cone"
+              ? "/stand-chocolate.png"
+              : "/placeholder.png"
+          }`}
           alt="chocolate cone stand"
+          fill
+        ></Image>
+      </motion.div>
+      <motion.div
+        className="absolute w-[10%] h-[13%] left-[1%] bottom-[44%]"
+        initial={{ x: -300 }}
+        animate={{ x: 0 }}
+        whileHover={{ scale: 1.1, y: -30 }}
+        transition={{
+          x: { type: "spring", damping: 20, delay: 0.1 },
+          scale: { type: "spring", stiffness: 200 },
+          y: { type: "spring", stiffness: 200 },
+        }}
+        onClick={() => displayManager("cup")}
+      >
+        <Image
+          src={`${base !== "cup" ? "/cup.png" : "/placeholder.png"}`}
+          alt="cup"
           fill
         ></Image>
       </motion.div>

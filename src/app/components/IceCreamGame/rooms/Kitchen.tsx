@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Selectables from "../Selectables";
+import DisplayUpdater from "../DIsplayUpdater";
 
 type Props = {
   onNavigate: (room: "storefront" | "kitchen") => void;
@@ -20,7 +21,7 @@ const Kitchen: React.FC<Props> = ({ onNavigate }) => {
       >
         <Image src="/storefront-sign.png" alt="storefront sign" fill></Image>
       </motion.div>
-      <Selectables></Selectables>;
+      <Selectables></Selectables>;<DisplayUpdater></DisplayUpdater>
     </>
   );
 };

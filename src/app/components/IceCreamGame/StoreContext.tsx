@@ -28,6 +28,16 @@ type GameContextBase = {
   setDelay: (dia: boolean) => void;
   spoken: boolean;
   setSpoken: (spok: boolean) => void;
+
+  //ICE CREAM DISPLAYS
+  base: string;
+  setBase: (bas: string) => void;
+  scoopOne: string;
+  setScoopOne: (scoop: string) => void;
+  scoopTwo: string;
+  setScoopTwo: (scoop: string) => void;
+  scoopThree: string;
+  setScoopThree: (scoop: string) => void;
 };
 
 const GameContext = createContext<GameContextBase | undefined>(undefined);
@@ -48,6 +58,12 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [delay, setDelay] = useState(false);
   const [spoken, setSpoken] = useState(false);
 
+  //ICE CREAM DISPLAYS
+  const [base, setBase] = useState("none");
+  const [scoopOne, setScoopOne] = useState("none");
+  const [scoopTwo, setScoopTwo] = useState("none");
+  const [scoopThree, setScoopThree] = useState("none");
+
   return (
     <GameContext.Provider
       value={{
@@ -63,6 +79,14 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         setDelay,
         spoken,
         setSpoken,
+        base,
+        setBase,
+        scoopOne,
+        setScoopOne,
+        scoopTwo,
+        setScoopTwo,
+        scoopThree,
+        setScoopThree,
       }}
     >
       {children}

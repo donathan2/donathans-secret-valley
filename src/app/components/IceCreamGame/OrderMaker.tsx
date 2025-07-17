@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useGame, IceCream, Order } from "./StoreContext";
 import orderDialogue from "./OrderDialogue";
 import Image from "next/image";
@@ -14,8 +14,13 @@ export default function OrderMaker() {
   const { delay, setDelay } = useGame();
   const { dialogue, setDialogue } = useGame();
   const { spoken, setSpoken } = useGame();
+  const speakingRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
+    speakingRef.current = new Audio("/voice3.mp3");
+    speakingRef.current.loop = true;
+    speakingRef.current.volume = 0.5;
+    speakingRef.current.playbackRate = 2.5;
     if (!currentOrder) {
       const waitDelay = setTimeout(() => {
         iceCreamGenerator();
@@ -29,15 +34,29 @@ export default function OrderMaker() {
     if (!currentOrder || newOrder === true) return;
     else {
       iceCreamGenerator();
+      setCurrentOrder({ ...currentOrder, status: "reading" });
 
       const waitDelay = setTimeout(() => {
         setDelay(true);
-        setCurrentOrder({ ...currentOrder, status: "reading" });
       }, 3000);
 
       return () => clearTimeout(waitDelay);
     }
   }, [newOrder]);
+
+  useEffect(() => {
+    if (currentOrder?.status === "reading") {
+      speakingRef.current
+        ?.play()
+        .catch((e) => console.warn("Autoplay failed:", e));
+    }
+    return () => {
+      if (speakingRef.current) {
+        speakingRef.current.pause();
+        speakingRef.current.currentTime = 0;
+      }
+    };
+  }, [currentOrder]);
 
   const iceCreamGenerator = () => {
     const nextId = idCount;
@@ -196,7 +215,7 @@ export default function OrderMaker() {
           {!spoken && delay && dialogue && (
             <Typewriter
               text={dialogue}
-              speed={42}
+              speed={32}
               onDone={handleDialogueDone}
             />
           )}
