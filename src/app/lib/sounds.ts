@@ -32,3 +32,9 @@ export const playShieldProc = () => playSFX("/shield-activate.wav", 1);
 export const playShieldUse = () => playSFX("/shield-use.wav", 0.9);
 export const playDominionUse = () => playSFX("/dominion-use.wav", 0.7);
 export const playMementoAtk = () => playSFX("/memento-atk.wav", 1);
+
+
+// ice cream sfx
+export const playScoop1 = () => playSFX("/voice3.mp3", 1);
+export const playScoop2 = () => playSFX("/scoop.mp3", 1);
+export const playScoop3 = () => playSFX("/scoop3.mp3", 1);

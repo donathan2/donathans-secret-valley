@@ -5,20 +5,22 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function DisplayUpdater() {
-  const { base } = useGame();
-  const { scoopOne, scoopTwo, scoopThree } = useGame();
+  const { base, scoopOne, scoopTwo, scoopThree, toppings, pickUp } = useGame();
 
   return (
-    <motion.div
-      className="absolute w-[30%] h-[60%] left-[33%] bottom-[20%]"
-      initial={{ opacity: 0, scale: 1.5 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ type: "spring" }}
+    <div
+      className={`absolute z-[52] ${
+        !pickUp
+          ? " w-[30%] h-[60%] left-[33%] bottom-[20%]"
+          : " w-[35%] h-[70%] right-[10%] -bottom-[10%]"
+      }`}
     >
       <motion.div
         className={`absolute ${
-          base === "normal cone"
+          base === "normal cone" && !pickUp
             ? "w-[31%] h-[62%] left-[33%] bottom-[0%]"
+            : base === "normal cone" && pickUp
+            ? "w-[33%] h-[45%] left-[32%] bottom-[12%]"
             : base === "chocolate cone"
             ? "w-[32%] h-[60%] left-[33%] bottom-[0%]"
             : base === "cup"
@@ -28,8 +30,10 @@ export default function DisplayUpdater() {
       >
         <Image
           src={
-            base === "normal cone"
+            base === "normal cone" && !pickUp
               ? "/stand-center.png"
+              : base === "normal cone" && pickUp
+              ? "/cone-normal.png"
               : base === "chocolate cone"
               ? "/stand-center-chocolate.png"
               : base === "cup"
@@ -70,7 +74,11 @@ export default function DisplayUpdater() {
           alt="scoop one"
           fill
         ></Image>
-        <motion.div className="absolute w-[100%] h-[100%] -top-[65%]">
+        <motion.div
+          className={`absolute ${
+            scoopTwo !== "none" ? "w-[100%] h-[100%]" : "w-[0%] h-[0%]"
+          } -top-[65%]`}
+        >
           <Image
             src={
               scoopTwo === "vanilla"
@@ -96,7 +104,11 @@ export default function DisplayUpdater() {
             alt="scoop two"
             fill
           ></Image>
-          <motion.div className="absolute w-[100%] h-[100%] -top-[65%]">
+          <motion.div
+            className={`absolute ${
+              scoopThree !== "none" ? "w-[100%] h-[100%]" : "w-[0%] h-[0%]"
+            } -top-[65%]`}
+          >
             <Image
               src={
                 scoopThree === "vanilla"
@@ -125,6 +137,123 @@ export default function DisplayUpdater() {
           </motion.div>
         </motion.div>
       </motion.div>
-    </motion.div>
+      {/* // // // // CHERRY DISPLAY // // // // */}
+      {toppings.cherry && (
+        <motion.div
+          className={`absolute w-[10%] h-[10%] z-[45] ${
+            scoopOne !== "none" && scoopTwo === "none" && !toppings.cream
+              ? `${
+                  base !== "cup" ? "bottom-[71%]" : "bottom-[41%]"
+                } right-[46%]`
+              : scoopOne !== "none" && scoopTwo === "none" && toppings.cream
+              ? `${
+                  base !== "cup" ? "bottom-[75%]" : "bottom-[45%]"
+                } right-[46%]`
+              : scoopTwo !== "none" && scoopThree === "none" && !toppings.cream
+              ? `${
+                  base !== "cup" ? "bottom-[88%]" : "bottom-[58%]"
+                } right-[46%]`
+              : scoopTwo !== "none" && scoopThree === "none" && toppings.cream
+              ? `${
+                  base !== "cup" ? "bottom-[92%]" : "bottom-[62%]"
+                } right-[46%]`
+              : scoopThree !== "none" && !toppings.cream
+              ? `${base !== "cup" ? "-top-[14%]" : "top-[16%]"} right-[46%]`
+              : scoopThree !== "none" && toppings.cream
+              ? `${base !== "cup" ? "-top-[18%]" : "top-[12%]"} right-[46%]`
+              : ""
+          }`}
+        >
+          <Image src="/cherry-drop.png" alt="cherry" fill></Image>
+        </motion.div>
+      )}
+
+      {/* // // // // WHIPPED CREAM DISPLAY // // // // */}
+      {toppings.cream && (
+        <motion.div
+          className={`absolute w-[25%] h-[19%] z-[44] ${
+            scoopOne !== "none" && scoopTwo === "none"
+              ? `${
+                  base !== "cup" ? "bottom-[66%]" : "bottom-[36%]"
+                } right-[38.5%]`
+              : scoopTwo !== "none" && scoopThree === "none"
+              ? `${base !== "cup" ? "-top-[2%]" : "bottom-[52%]"} right-[38.5%]`
+              : scoopThree !== "none"
+              ? `${
+                  base !== "cup" ? "-top-[19%]" : "bottom-[69%]"
+                } right-[38.5%]`
+              : ""
+          }`}
+        >
+          <Image src="/cream-drop.png" alt="whipped cream" fill></Image>
+        </motion.div>
+      )}
+      {/* // // // // RAINBOW SPRINKLES DISPLAY // // // // */}
+      {toppings.sprinkles && (
+        <motion.div
+          className={`absolute w-[36%] h-[26%] z-[42] ${
+            scoopOne !== "none" && scoopTwo === "none"
+              ? `${
+                  base !== "cup" ? "bottom-[50%]" : "bottom-[20%]"
+                } right-[33%]`
+              : scoopTwo !== "none" && scoopThree === "none"
+              ? `${
+                  base !== "cup" ? "bottom-[67%]" : "bottom-[37%]"
+                } right-[33%]`
+              : scoopThree !== "none"
+              ? `${
+                  base !== "cup" ? "bottom-[84%]" : "bottom-[54%]"
+                } right-[33%]`
+              : ""
+          }`}
+        >
+          <Image src="/sprinkles-drop.png" alt="rainbow sprinkles" fill></Image>
+        </motion.div>
+      )}
+      {/* // // // // CHOCOLATE CHIPS DISPLAY // // // // */}
+      {toppings.chips && (
+        <motion.div
+          className={`absolute w-[36%] h-[26%] z-[43] ${
+            scoopOne !== "none" && scoopTwo === "none"
+              ? `${
+                  base !== "cup" ? "bottom-[50%]" : "bottom-[20%]"
+                } right-[33%]`
+              : scoopTwo !== "none" && scoopThree === "none"
+              ? `${
+                  base !== "cup" ? "bottom-[67%]" : "bottom-[37%]"
+                } right-[33%]`
+              : scoopThree !== "none"
+              ? `${
+                  base !== "cup" ? "bottom-[84%]" : "bottom-[54%]"
+                } right-[33%]`
+              : ""
+          }`}
+        >
+          <Image src="/chips-drop.png" alt="chocolate chips" fill></Image>
+        </motion.div>
+      )}
+      {/* // // // // CHOCOLATE SAUCE DISPLAY // // // // */}
+      {toppings.sauce && (
+        <motion.div
+          className={`absolute w-[36%] h-[26%] z-[41] ${
+            scoopOne !== "none" && scoopTwo === "none"
+              ? `${
+                  base !== "cup" ? "bottom-[50%]" : "bottom-[20%]"
+                } right-[33%]`
+              : scoopTwo !== "none" && scoopThree === "none"
+              ? `${
+                  base !== "cup" ? "bottom-[67%]" : "bottom-[37%]"
+                } right-[33%]`
+              : scoopThree !== "none"
+              ? `${
+                  base !== "cup" ? "bottom-[84%]" : "bottom-[54%]"
+                } right-[33%]`
+              : ""
+          }`}
+        >
+          <Image src="/sauce-drop.png" alt="chocolate sauce" fill></Image>
+        </motion.div>
+      )}
+    </div>
   );
 }

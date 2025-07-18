@@ -155,7 +155,7 @@ export default function Inventory({
                 style={{ textShadow: "1px 1px 1px rgb(210, 17, 27)" }}
               >
                 Chaos: If the next spell is a critical hit, the crit dmg
-                multiplier is increased from x2 to x5.
+                multiplier is increased from x2 to x7.
               </p>
               <p className="pl-5 pr-5 pt-2 underline">Fire and Freeze</p>
               <p
@@ -205,8 +205,8 @@ export default function Inventory({
               <p className="pl-5 pr-5 pb-5">
                 Harness the archangel&apos;s triumphant blessing.{" "}
                 <span style={{ textShadow: "1px 1px 1px rgb(146, 181, 177)" }}>
-                  Grants a 65% chance to block each of the monster&apos;s next 2
-                  attacks.{" "}
+                  Grants a 65% chance to block the monster&apos;s attack for the
+                  next 2 attacks.{" "}
                 </span>
               </p>
             </div>

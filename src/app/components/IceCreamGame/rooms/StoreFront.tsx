@@ -1,14 +1,20 @@
 import OrderMaker from "../OrderMaker";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useGame } from "../StoreContext";
+import DisplayUpdater from "../DIsplayUpdater";
 
 type Props = {
   onNavigate: (room: "storefront" | "kitchen") => void;
 };
 
 const StoreFront: React.FC<Props> = ({ onNavigate }) => {
+  const { pickUp } = useGame();
   return (
     <>
+      <div className="absolute w-full h-full z-[52] pointer-events-none">
+        {pickUp && <DisplayUpdater></DisplayUpdater>}
+      </div>
       <div className="w-full h-full bg-[url('/storefront.png')] bg-contain bg-no-repeat"></div>
       <div className="absolute z-40 w-full h-[42%] bg-[url('/counter.png')] bg-cover bottom-0"></div>
       <OrderMaker></OrderMaker>

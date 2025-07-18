@@ -2,6 +2,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Selectables from "../Selectables";
 import DisplayUpdater from "../DIsplayUpdater";
+import SwitchLogic from "../SwitchLogic";
+import PickUpLogic from "../PickUpLogic";
 
 type Props = {
   onNavigate: (room: "storefront" | "kitchen") => void;
@@ -21,7 +23,10 @@ const Kitchen: React.FC<Props> = ({ onNavigate }) => {
       >
         <Image src="/storefront-sign.png" alt="storefront sign" fill></Image>
       </motion.div>
-      <Selectables></Selectables>;<DisplayUpdater></DisplayUpdater>
+      <Selectables></Selectables>
+      <DisplayUpdater></DisplayUpdater>
+      <SwitchLogic></SwitchLogic>
+      <PickUpLogic></PickUpLogic>
     </>
   );
 };

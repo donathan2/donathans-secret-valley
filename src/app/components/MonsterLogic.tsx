@@ -747,7 +747,7 @@ export default function MonsterLogic() {
               handleMonsterShake();
               if (unravel) {
                 if (prevElement === "Lightning!") {
-                  castFire(0, 3, prevElement);
+                  castFire(0, 5, prevElement);
                 } else if (prevElement === "Freeze!") {
                   castFire(10, 0, prevElement);
                 } else {
@@ -783,7 +783,7 @@ export default function MonsterLogic() {
               handleMonsterShake();
               if (unravel) {
                 if (prevElement === "Fire!") {
-                  castLightning(3, 0, prevElement, 0);
+                  castLightning(5, 0, prevElement, 0);
                 } else if (prevElement === "Freeze") {
                   castLightning(0, 1, prevElement, 0);
                 } else {

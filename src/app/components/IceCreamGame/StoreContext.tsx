@@ -15,6 +15,15 @@ export type IceCream = {
   popsicleFlavor: string;
 };
 
+export type Toppings = {
+  hasToppings: boolean;
+  sprinkles: boolean;
+  chips: boolean;
+  sauce: boolean;
+  cherry: boolean;
+  cream: boolean;
+};
+
 type GameContextBase = {
   currentOrder: Order | null;
   setCurrentOrder: (ord: Order | null) => void;
@@ -38,6 +47,12 @@ type GameContextBase = {
   setScoopTwo: (scoop: string) => void;
   scoopThree: string;
   setScoopThree: (scoop: string) => void;
+  toppings: Toppings;
+  setToppings: React.Dispatch<React.SetStateAction<Toppings>>;
+  switchOn: boolean;
+  setSwitchOn: React.Dispatch<React.SetStateAction<boolean>>;
+  pickUp: boolean;
+  setPickUp: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const GameContext = createContext<GameContextBase | undefined>(undefined);
@@ -63,6 +78,16 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [scoopOne, setScoopOne] = useState("none");
   const [scoopTwo, setScoopTwo] = useState("none");
   const [scoopThree, setScoopThree] = useState("none");
+  const [toppings, setToppings] = useState<Toppings>({
+    hasToppings: false,
+    sprinkles: false,
+    chips: false,
+    sauce: false,
+    cherry: false,
+    cream: false,
+  });
+  const [switchOn, setSwitchOn] = useState(true);
+  const [pickUp, setPickUp] = useState(false);
 
   return (
     <GameContext.Provider
@@ -87,6 +112,12 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         setScoopTwo,
         scoopThree,
         setScoopThree,
+        toppings,
+        setToppings,
+        switchOn,
+        setSwitchOn,
+        pickUp,
+        setPickUp,
       }}
     >
       {children}

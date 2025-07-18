@@ -78,10 +78,9 @@ export default function Home() {
           transition={{ type: "spring", stiffness: 100, damping: 14 }}
         >
           <div>
-            Hi! I&apos;m Donathan, and this is a webpage I made out of nothing
-            but an inexorable drive for fantastical creation. Feel free to click
-            around and explore. I had a lot of fun creating this, and I want to
-            share a little bit of that joy with you.
+            Hi! I&apos;m Donathan, and this is a webpage I made just for fun!
+            Feel free to click around and explore. I really enjoyed creating
+            this, and I want to share a little bit of that joy with you.
           </div>
           <div className="pt-[35px]">
             All graphics were drawn by me using make8bitart.com. All SFX/BGM are
