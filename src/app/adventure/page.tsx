@@ -47,9 +47,9 @@ export default function AdventurePage() {
           </motion.div>
           <div className="absolute w-[55%] h-[50%] rounded-xl shadow shadow-white border border-white bg-gradient-to-br from-lime-200 to-green-500 left-1/2 -translate-x-1/2 bottom-[-20%] ">
             <p className="text-center text-xl m-[2%] mt-[6%]">
-              This is where I host small games I&apos;ve made for fun that don't
-              really constitute a full project. Please feel free to play some of
-              them.
+              This is where I host small games I&apos;ve made for fun that
+              don&apos;t really constitute a full project. Please feel free to
+              play some of them.
             </p>
           </div>
         </div>
