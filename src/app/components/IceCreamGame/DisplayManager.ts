@@ -10,8 +10,8 @@ export default function useDisplayManager() {
     const {base, setBase, scoopOne, setScoopOne, scoopTwo, setScoopTwo, scoopThree, setScoopThree, toppings, setToppings, pickUp} = useGame()
 
     const bases = ["normal cone", "chocolate cone", "cup"]
-    const flavors = ["vanilla", "chocolate", "strawberry", "mint choco", "birthday cake", "cotton candy", "matcha", "cookies and cream", "mango"]
-    const toppingSet = ["rainbow sprinkles", "chocolate chips", "chocolate sauce", "cherry", "whipped cream"]
+    const flavors = ["vanilla", "chocolate", "strawberry", "mint choco", "birthday cake", "cotton candy", "matcha", "cookies & cream", "mango"]
+    const toppingSet = ["some rainbow sprinkles", "some chocolate chips", "some chocolate sauce", "a cherry", "some whipped cream"]
 
 
  function displayManager(element: string) {
@@ -34,35 +34,35 @@ export default function useDisplayManager() {
 
     } else if (toppingSet.includes(element)) {
         if (base !== "none" && scoopOne !== "none") {
-            if (element === "rainbow sprinkles") {
+            if (element === "some rainbow sprinkles") {
                 setToppings((prev: Toppings) => ({
                     ...prev,
                     hasToppings: true,
                     sprinkles: true,
 
                 }))
-            } else if (element === "chocolate chips") {
+            } else if (element === "some chocolate chips") {
                 setToppings((prev: Toppings) => ({
                     ...prev,
                     hasToppings: true,
                     chips: true,
 
                 }))
-            } else if (element === "chocolate sauce") {
+            } else if (element === "some chocolate sauce") {
                 setToppings((prev: Toppings) => ({
                     ...prev,
                     hasToppings: true,
                     sauce: true,
 
                 }))
-            } else if (element === "cherry") {
+            } else if (element === "a cherry") {
                 setToppings((prev: Toppings) => ({
                     ...prev,
                     hasToppings: true,
                     cherry: true,
 
                 }))
-            } else if (element === "whipped cream") {
+            } else if (element === "some whipped cream") {
                 setToppings((prev: Toppings) => ({
                     ...prev,
                     hasToppings: true,

@@ -8,12 +8,19 @@ import Typewriter from "./TypeWriter";
 let idCount = 0;
 
 export default function OrderMaker() {
-  const { currentOrder, setCurrentOrder } = useGame();
-  const [newOrder, setNewOrder] = useState(true);
-  const { currentCustomer, setCurrentCustomer } = useGame();
-  const { delay, setDelay } = useGame();
-  const { dialogue, setDialogue } = useGame();
-  const { spoken, setSpoken } = useGame();
+  const {
+    currentOrder,
+    setCurrentOrder,
+    currentCustomer,
+    setCurrentCustomer,
+    delay,
+    setDelay,
+    dialogue,
+    setDialogue,
+    spoken,
+    setSpoken,
+  } = useGame();
+
   const speakingRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
@@ -31,18 +38,21 @@ export default function OrderMaker() {
   }, []);
 
   useEffect(() => {
-    if (!currentOrder || newOrder === true) return;
-    else {
-      iceCreamGenerator();
-      setCurrentOrder({ ...currentOrder, status: "reading" });
-
+    if (currentOrder && currentOrder.status === "completed") {
       const waitDelay = setTimeout(() => {
+        iceCreamGenerator();
         setDelay(true);
-      }, 3000);
+      }, 4500);
+      const bufferDelaySoDontRepeatOrder = setTimeout(() => {
+        setCurrentOrder({ ...currentOrder, status: "reading" });
+      }, 4600);
 
-      return () => clearTimeout(waitDelay);
+      return () => {
+        clearTimeout(waitDelay);
+        clearTimeout(bufferDelaySoDontRepeatOrder);
+      };
     }
-  }, [newOrder]);
+  }, [currentOrder]);
 
   useEffect(() => {
     if (currentOrder?.status === "reading") {
@@ -57,6 +67,19 @@ export default function OrderMaker() {
       }
     };
   }, [currentOrder]);
+
+  useEffect(() => {
+    console.log(currentOrder);
+  }, [currentOrder]);
+
+  useEffect(() => {
+    if (currentOrder && currentOrder.status === "assessment") {
+      if (currentCustomer === "/customer1-idle.gif") {
+        setCurrentCustomer("/customer1-talk.gif");
+      }
+      setSpoken(false);
+    }
+  }, [dialogue]);
 
   const iceCreamGenerator = () => {
     const nextId = idCount;
@@ -81,7 +104,7 @@ export default function OrderMaker() {
     const toppings = [
       "a cherry",
       "some rainbow sprinkles",
-      "some chocolate syrup",
+      "some chocolate sauce",
       "some whipped cream",
       "some chocolate chips",
     ];
@@ -166,8 +189,8 @@ export default function OrderMaker() {
     };
 
     //set the order
+    console.log("NEW ORDER:", nextOrder);
     setCurrentOrder(nextOrder);
-    setNewOrder(false);
   };
 
   function randomFromArray<T>(arr: T[]): T {
@@ -176,6 +199,16 @@ export default function OrderMaker() {
   }
 
   function handleDialogueDone() {
+    if (currentOrder?.status === "assessment") {
+      if (currentCustomer === "/customer1-talk.gif") {
+        setCurrentCustomer("/customer1-idle.gif");
+      }
+      setTimeout(() => {
+        setCurrentOrder({ ...currentOrder, status: "completed" });
+        setDelay(false);
+        setSpoken(false);
+      }, 3000);
+    }
     if (currentOrder?.status !== "in-progress") {
       if (currentCustomer === "/customer1-talk.gif") {
         setCurrentCustomer("/customer1-idle.gif");
@@ -184,7 +217,6 @@ export default function OrderMaker() {
         ...currentOrder!,
         status: "in-progress",
       });
-
       setSpoken(true);
     }
   }
@@ -205,7 +237,6 @@ export default function OrderMaker() {
             className=""
           ></Image>
         </motion.div>
-        s
         <motion.div
           className="inset-0 w-[48%] h-[32%] translate-x-[80%] translate-y-[50%] z-50 absolute bg-amber-50 border-[5px]"
           initial={!spoken ? { opacity: 0 } : { opacity: 1 }}

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useGame } from "../StoreContext";
 import DisplayUpdater from "../DIsplayUpdater";
+import ServingLogic from "../ServingLogic";
 
 type Props = {
   onNavigate: (room: "storefront" | "kitchen") => void;
@@ -28,6 +29,7 @@ const StoreFront: React.FC<Props> = ({ onNavigate }) => {
       >
         <Image src="/kitchen-sign.png" alt="kitchen sign" fill></Image>
       </motion.div>
+      <ServingLogic></ServingLogic>
     </>
   );
 };

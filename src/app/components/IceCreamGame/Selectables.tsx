@@ -21,14 +21,14 @@ export default function Selectables() {
         <motion.div
           className="absolute w-[18%] h-[75%] left-[15%] bottom-[30%]"
           whileHover={{ scale: 1.1, y: -20 }}
-          onClick={() => displayManager("rainbow sprinkles")}
+          onClick={() => displayManager("some rainbow sprinkles")}
         >
           <Image src="/sprinkler.png" alt="rainbow sprinkles" fill></Image>
         </motion.div>
         <motion.div
           className="absolute w-[18%] h-[75%] right-[41%] bottom-[30%]"
           whileHover={{ scale: 1.1, y: -20 }}
-          onClick={() => displayManager("chocolate chips")}
+          onClick={() => displayManager("some chocolate chips")}
         >
           <Image
             src="/chocolate-sprinkler.png"
@@ -39,7 +39,7 @@ export default function Selectables() {
         <motion.div
           className="absolute w-[22%] h-[100%] right-[12%] bottom-[28%]"
           whileHover={{ scale: 1.1, y: -20 }}
-          onClick={() => displayManager("chocolate sauce")}
+          onClick={() => displayManager("some chocolate sauce")}
         >
           <Image src="/chocolate-sauce.png" alt="chocolate sauce" fill></Image>
         </motion.div>
@@ -54,14 +54,14 @@ export default function Selectables() {
         <motion.div
           className="absolute w-[45%] h-[90%] left-[16%] bottom-[31%]"
           whileHover={{ scale: 1.1, y: -20 }}
-          onClick={() => displayManager("cherry")}
+          onClick={() => displayManager("a cherry")}
         >
           <Image src="/cherry-bowl.png" alt="cherry bowl" fill></Image>
         </motion.div>
         <motion.div
           className="absolute w-[21%] h-[100%] right-[15%] bottom-[30%]"
           whileHover={{ scale: 1.1, y: -20 }}
-          onClick={() => displayManager("whipped cream")}
+          onClick={() => displayManager("some whipped cream")}
         >
           <Image
             src="/whipped-spray.png"
@@ -212,7 +212,7 @@ export default function Selectables() {
           scale: 1.1,
           transition: { type: "spring", stiffness: 400 },
         }}
-        onClick={() => displayManager("cookies and cream")}
+        onClick={() => displayManager("cookies & cream")}
       >
         <Image src="/cookies-cream.png" alt="cookies and cream" fill></Image>
       </motion.div>

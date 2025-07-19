@@ -20,9 +20,11 @@ export default function DisplayUpdater() {
           base === "normal cone" && !pickUp
             ? "w-[31%] h-[62%] left-[33%] bottom-[0%]"
             : base === "normal cone" && pickUp
-            ? "w-[33%] h-[45%] left-[32%] bottom-[12%]"
-            : base === "chocolate cone"
+            ? "w-[33%] h-[45%] left-[32%] bottom-[13%]"
+            : base === "chocolate cone" && !pickUp
             ? "w-[32%] h-[60%] left-[33%] bottom-[0%]"
+            : base === "chocolate cone" && pickUp
+            ? "w-[33%] h-[45%] left-[32%] bottom-[13%]"
             : base === "cup"
             ? "w-[34%] h-[28%] left-[32%] bottom-[2%]"
             : "hidden"
@@ -34,8 +36,10 @@ export default function DisplayUpdater() {
               ? "/stand-center.png"
               : base === "normal cone" && pickUp
               ? "/cone-normal.png"
-              : base === "chocolate cone"
+              : base === "chocolate cone" && !pickUp
               ? "/stand-center-chocolate.png"
+              : base === "chocolate cone" && pickUp
+              ? "/cone-chocolate.png"
               : base === "cup"
               ? "/cup-real.png"
               : "/placeholder.png"
@@ -65,7 +69,7 @@ export default function DisplayUpdater() {
               ? "/mango-scoop.png"
               : scoopOne === "birthday cake"
               ? "/birthday-scoop.png"
-              : scoopOne === "cookies and cream"
+              : scoopOne === "cookies & cream"
               ? "/cookies-scoop.png"
               : scoopOne === "cotton candy"
               ? "/cotton-scoop.png"
@@ -95,7 +99,7 @@ export default function DisplayUpdater() {
                 ? "/mango-scoop.png"
                 : scoopTwo === "birthday cake"
                 ? "/birthday-scoop.png"
-                : scoopTwo === "cookies and cream"
+                : scoopTwo === "cookies & cream"
                 ? "/cookies-scoop.png"
                 : scoopTwo === "cotton candy"
                 ? "/cotton-scoop.png"
@@ -125,7 +129,7 @@ export default function DisplayUpdater() {
                   ? "/mango-scoop.png"
                   : scoopThree === "birthday cake"
                   ? "/birthday-scoop.png"
-                  : scoopThree === "cookies and cream"
+                  : scoopThree === "cookies & cream"
                   ? "/cookies-scoop.png"
                   : scoopThree === "cotton candy"
                   ? "/cotton-scoop.png"

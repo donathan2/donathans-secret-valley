@@ -5,31 +5,8 @@ import Image from "next/image";
 import { useGame } from "./StoreContext";
 
 export default function SwitchLogic() {
-  const {
-    switchOn,
-    setSwitchOn,
-    setScoopOne,
-    setScoopTwo,
-    setScoopThree,
-    setBase,
-    setToppings,
-    setPickUp,
-  } = useGame();
+  const { switchOn, setSwitchOn, clearIceCream, setPickUp } = useGame();
 
-  function clearIceCream() {
-    setScoopOne("none");
-    setScoopTwo("none");
-    setScoopThree("none");
-    setBase("none");
-    setToppings({
-      hasToppings: false,
-      sprinkles: false,
-      chips: false,
-      sauce: false,
-      cherry: false,
-      cream: false,
-    });
-  }
   return (
     <>
       <motion.div

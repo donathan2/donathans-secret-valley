@@ -4,7 +4,7 @@ export type Order = {
   id: number;
   desired: IceCream;
   customer: string;
-  status: "new" | "reading" | "in-progress" | "completed";
+  status: "new" | "reading" | "in-progress" | "assessment" | "completed";
 };
 
 export type IceCream = {
@@ -53,6 +53,7 @@ type GameContextBase = {
   setSwitchOn: React.Dispatch<React.SetStateAction<boolean>>;
   pickUp: boolean;
   setPickUp: React.Dispatch<React.SetStateAction<boolean>>;
+  clearIceCream: () => void;
 };
 
 const GameContext = createContext<GameContextBase | undefined>(undefined);
@@ -89,6 +90,21 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [switchOn, setSwitchOn] = useState(true);
   const [pickUp, setPickUp] = useState(false);
 
+  function clearIceCream() {
+    setScoopOne("none");
+    setScoopTwo("none");
+    setScoopThree("none");
+    setBase("none");
+    setToppings({
+      hasToppings: false,
+      sprinkles: false,
+      chips: false,
+      sauce: false,
+      cherry: false,
+      cream: false,
+    });
+  }
+
   return (
     <GameContext.Provider
       value={{
@@ -118,6 +134,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         setSwitchOn,
         pickUp,
         setPickUp,
+        clearIceCream,
       }}
     >
       {children}
