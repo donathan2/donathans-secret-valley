@@ -70,7 +70,7 @@ export default function Home() {
       </main>
       <div className="w-full h-[500px]">
         <motion.div
-          className={`${normalFont.className} z-20 w-225 pt-10 text-center text-2xl pl-5 pr-5 shadow-lg shadow-green-950 h-[275px] mx-auto bg-gradient-to-br from-lime-200 via-green-600 to-green-800`}
+          className={`${normalFont.className} z-20 w-225 pt-10 text-center text-2xl pl-5 pr-5 shadow-lg shadow-green-950 h-[200px] mx-auto bg-gradient-to-br from-lime-200 via-green-600 to-green-800`}
           initial={{ opacity: 0, scale: 0 }}
           animate={
             scrolledPast ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }
@@ -80,12 +80,8 @@ export default function Home() {
           <div>
             Hi! I&apos;m Donathan, and this is a webpage I made just for fun!
             Feel free to click around and explore. I really enjoyed creating
-            this, and I want to share a little bit of that joy with you.
-          </div>
-          <div className="pt-[35px]">
-            All graphics were drawn by me using make8bitart.com. All SFX/BGM are
-            from opengameart.org published by authors HydroGene, @Shades, and
-            SubSpaceAudio
+            this, and I want to share a little bit of that joy with you. All
+            graphics were drawn by me using make8bitart.com and Figma.
           </div>
         </motion.div>
       </div>

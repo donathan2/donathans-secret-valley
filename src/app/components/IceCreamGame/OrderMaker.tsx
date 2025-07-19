@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from "react";
-import { useGame, IceCream, Order } from "./StoreContext";
+import { useEffect, useRef } from "react";
+import { useGame, Order } from "./StoreContext";
 import orderDialogue from "./OrderDialogue";
 import Image from "next/image";
 import { motion } from "framer-motion";
