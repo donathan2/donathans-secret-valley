@@ -27,7 +27,7 @@ export default function orderDialogue({
     "Hope you're doing well today :)",
     "I'm craving something sweet!",
     "Howdy partner.",
-    "I spent this entire morning swimming down that river.",
+    "What's good.",
     "What a beautiful morning!",
   ];
 
@@ -44,13 +44,13 @@ export default function orderDialogue({
 
   //cone/cup dialogues
   const oneScoop = [
-    `I'd love a ${type} with just one scoop of ${flavors[0]} ice cream! So excited :)`,
+    `I'd love a ${type} with just one scoop of ${flavors[0]} ice cream!`,
     `I've heard too much about the ${flavors[0]} ice cream here. Give me a ${type} with one scoop of it, now! `,
-    `I loveeeeeeeee ${flavors[0]}. Just a ${type} with one scoop of it pleaseeeeee!`,
+    `I love ${flavors[0]}. Just a ${type} with one scoop of it oh pretty please.`,
   ];
 
   const twoScoop = [
-    `I'm hungry for 2 scoops of ${flavors[0]} and ${flavors[1]}. Put it in a ${type} please.`,
+    `I'm hungry for both ${flavors[0]} and ${flavors[1]}. Put them in a ${type} please.`,
     `What's a better combo than ${flavors[0]} and ${flavors[1]}? A ${type} with both of them now!`,
     `I had a dream last night that I ordered a ${type} with ${flavors[0]} and ${flavors[1]} ice cream from here, so I just had to recreate it.`,
   ];
@@ -58,7 +58,7 @@ export default function orderDialogue({
   const threeScoop = [
     `Alright. ${flavors[0]}, ${flavors[1]}, and what's a good 3rd scoop??? ${flavors[2]}! And in a ${type} please.`,
     `Triple scoops = triple happiness! Give me ${flavors[0]}, ${flavors[1]}, and ${flavors[2]} all in a ${type}!`,
-    `It's time to seize the day! A ${type} with ${flavors[0]}, ${flavors[1]}, and ${flavors[2]} please!`,
+    `I need a triple scoop ${type} with ${flavors[0]}, ${flavors[1]}, and ${flavors[2]} please!`,
   ];
 
   //topping dialogue

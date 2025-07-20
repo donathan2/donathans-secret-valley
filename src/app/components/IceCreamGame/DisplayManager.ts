@@ -1,9 +1,9 @@
 "use client"
 
 import { useGame } from "./StoreContext"
-import { playScoop1, playScoop2, playScoop3 } from "@/app/lib/sounds"
+import { playCream, playCherry, playSprinkles, playChips, playSauce, playScoop1, playScoop2, playScoop3 } from "@/app/lib/sounds"
 import { Toppings } from "./StoreContext"
-
+import { } from "@/app/lib/sounds"
 
 export default function useDisplayManager() {
 
@@ -34,35 +34,40 @@ export default function useDisplayManager() {
 
     } else if (toppingSet.includes(element)) {
         if (base !== "none" && scoopOne !== "none") {
-            if (element === "some rainbow sprinkles") {
+            if (element === "some rainbow sprinkles" && !toppings.sprinkles) {
+                playSprinkles()
                 setToppings((prev: Toppings) => ({
                     ...prev,
                     hasToppings: true,
                     sprinkles: true,
 
                 }))
-            } else if (element === "some chocolate chips") {
+            } else if (element === "some chocolate chips" && !toppings.chips) {
+                playChips()
                 setToppings((prev: Toppings) => ({
                     ...prev,
                     hasToppings: true,
                     chips: true,
 
                 }))
-            } else if (element === "some chocolate sauce") {
+            } else if (element === "some chocolate sauce" && !toppings.sauce) {
+                playSauce()
                 setToppings((prev: Toppings) => ({
                     ...prev,
                     hasToppings: true,
                     sauce: true,
 
                 }))
-            } else if (element === "a cherry") {
+            } else if (element === "a cherry" && !toppings.cherry) {
+                playCherry()
                 setToppings((prev: Toppings) => ({
                     ...prev,
                     hasToppings: true,
                     cherry: true,
 
                 }))
-            } else if (element === "some whipped cream") {
+            } else if (element === "some whipped cream" && !toppings.cream) {
+                playCream()
                 setToppings((prev: Toppings) => ({
                     ...prev,
                     hasToppings: true,

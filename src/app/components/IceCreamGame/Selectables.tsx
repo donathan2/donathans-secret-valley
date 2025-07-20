@@ -4,10 +4,15 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import useDisplayManager from "./DisplayManager";
 import { useGame } from "./StoreContext";
+import { useEffect } from "react";
 
 export default function Selectables() {
   const { displayManager } = useDisplayManager();
-  const { base } = useGame();
+  const { base, setEnteredKitchen, setShowNote, showNote } = useGame();
+
+  useEffect(() => {
+    setEnteredKitchen(true);
+  }, []);
   return (
     <>
       {/*SHELVES*/}
@@ -277,6 +282,32 @@ export default function Selectables() {
           alt="cup"
           fill
         ></Image>
+      </motion.div>
+
+      {/* NOTE */}
+      <motion.div
+        className="absolute w-[7%] h-[16%] top-[20%] left-[2%]"
+        initial={{ x: -300 }}
+        animate={{ x: 0 }}
+        transition={{ type: "spring", damping: 20 }}
+        whileHover={{ scale: 1.2, rotateZ: -5 }}
+        onClick={() => setShowNote(true)}
+      >
+        <Image src="/note-wall.png" alt="note on wall" fill></Image>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={showNote ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.15 }}
+        className={`absolute w-full h-full bg-black/50 z-[100] ${
+          !showNote ? "pointer-events-none" : ""
+        }`}
+        onClick={() => setShowNote(false)}
+      >
+        <div className="absolute w-[40%] h-[80%] bottom-[10%] left-[30%]">
+          <Image src="/note.png" alt="note close up" fill></Image>
+        </div>
       </motion.div>
     </>
   );

@@ -1,5 +1,6 @@
 "use client";
 import { useGame } from "./StoreContext";
+import { playPerfect, playGood, playMid, playBad } from "@/app/lib/sounds";
 
 export default function useAssessment() {
   const { currentOrder, setDialogue, base, scoopOne, scoopTwo, scoopThree, toppings } = useGame();
@@ -26,8 +27,8 @@ const midOrder = ["Hey I can tell you really tried with this one, but maybe you 
 ]
 
 const badOrder = ["... Did you have an accident in the kitchen?", 
-  "Are you trying to send me to a hospital???? I mean what is this??", 
-"Did I say something wrong? You could've just told me instead of... this", 
+  "Are you trying to send me to a hospital???? I mean what is this garbage??", 
+"Did I say something wrong? You could've just told me instead of serving me this trash.", 
 "??????????????????????????????", 
 "Um. Is this a threat??"]
 
@@ -40,12 +41,16 @@ const badOrder = ["... Did you have an accident in the kitchen?",
     console.log(currentOrder)
     if (points === 7) {
       setDialogue(randomFromArray(perfectOrder))
+      playPerfect()
     } else if (points === 5 || points === 6 || points === 4) {
       setDialogue(randomFromArray(goodOrder))
+      playGood()
     } else if (points === 3 || points === 2 || points === 1) {
       setDialogue(randomFromArray(midOrder))
+      playMid()
     } else {
       setDialogue(randomFromArray(badOrder))
+      playBad()
     }
   }
 

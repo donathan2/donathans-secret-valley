@@ -38,6 +38,9 @@ type GameContextBase = {
   spoken: boolean;
   setSpoken: (spok: boolean) => void;
 
+  enteredKitchen: boolean;
+  setEnteredKitchen: (ent: boolean) => void;
+
   //ICE CREAM DISPLAYS
   base: string;
   setBase: (bas: string) => void;
@@ -54,6 +57,8 @@ type GameContextBase = {
   pickUp: boolean;
   setPickUp: React.Dispatch<React.SetStateAction<boolean>>;
   clearIceCream: () => void;
+  showNote: boolean;
+  setShowNote: (show: boolean) => void;
 };
 
 const GameContext = createContext<GameContextBase | undefined>(undefined);
@@ -89,6 +94,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   });
   const [switchOn, setSwitchOn] = useState(true);
   const [pickUp, setPickUp] = useState(false);
+  const [enteredKitchen, setEnteredKitchen] = useState(false);
+  const [showNote, setShowNote] = useState(false);
 
   function clearIceCream() {
     setScoopOne("none");
@@ -135,6 +142,10 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         pickUp,
         setPickUp,
         clearIceCream,
+        enteredKitchen,
+        setEnteredKitchen,
+        showNote,
+        setShowNote,
       }}
     >
       {children}

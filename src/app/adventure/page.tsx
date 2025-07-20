@@ -160,8 +160,9 @@ export default function AdventurePage() {
                 >
                   The Ice Cream Parlor
                 </p>
-                <p className="absolute w-[80%] h-[10%] right-[-20%] top-[8%]">
-                  SFX/BGM: phoenix1291 (opengameart.org).
+                <p className="absolute text-sm text-center w-[50%] h-[15%] left-[42%] top-[8%]">
+                  SFX/BGM: phoenix1291, VIRiX Dreamcore, Vehicle and
+                  SubSpaceAudio (opengameart.org).
                 </p>
                 <p className="text-xl pl-[7%] pr-[7%] mt-[2%]">
                   Take over ice cream scooping for a day and tend to the wacky

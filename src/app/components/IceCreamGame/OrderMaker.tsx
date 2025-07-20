@@ -24,16 +24,18 @@ export default function OrderMaker() {
   const speakingRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    speakingRef.current = new Audio("/voice3.mp3");
+    speakingRef.current = new Audio("/talk.mp3");
     speakingRef.current.loop = true;
-    speakingRef.current.volume = 0.5;
-    speakingRef.current.playbackRate = 2.5;
+    speakingRef.current.volume = 0.4;
+    speakingRef.current.playbackRate = 3.2;
     if (!currentOrder) {
       const waitDelay = setTimeout(() => {
         iceCreamGenerator();
         setDelay(true);
       }, 3000);
-      return () => clearTimeout(waitDelay);
+      return () => {
+        clearTimeout(waitDelay);
+      };
     }
   }, []);
 
@@ -41,21 +43,21 @@ export default function OrderMaker() {
     if (currentOrder && currentOrder.status === "completed") {
       const waitDelay = setTimeout(() => {
         iceCreamGenerator();
+        console.log("setDelay true?");
         setDelay(true);
-      }, 4500);
-      const bufferDelaySoDontRepeatOrder = setTimeout(() => {
-        setCurrentOrder({ ...currentOrder, status: "reading" });
-      }, 4600);
+      }, 7500);
 
       return () => {
         clearTimeout(waitDelay);
-        clearTimeout(bufferDelaySoDontRepeatOrder);
       };
     }
   }, [currentOrder]);
 
   useEffect(() => {
-    if (currentOrder?.status === "reading") {
+    if (
+      currentOrder?.status === "reading" ||
+      currentOrder?.status === "assessment"
+    ) {
       speakingRef.current
         ?.play()
         .catch((e) => console.warn("Autoplay failed:", e));
@@ -185,11 +187,10 @@ export default function OrderMaker() {
       id: nextId,
       desired: newIceCreamLocal,
       customer: nextCustomer,
-      status: "new",
+      status: "reading",
     };
 
     //set the order
-    console.log("NEW ORDER:", nextOrder);
     setCurrentOrder(nextOrder);
   };
 
@@ -200,16 +201,15 @@ export default function OrderMaker() {
 
   function handleDialogueDone() {
     if (currentOrder?.status === "assessment") {
+      setCurrentOrder({ ...currentOrder, status: "completed" });
       if (currentCustomer === "/customer1-talk.gif") {
         setCurrentCustomer("/customer1-idle.gif");
       }
       setTimeout(() => {
-        setCurrentOrder({ ...currentOrder, status: "completed" });
         setDelay(false);
         setSpoken(false);
       }, 3000);
-    }
-    if (currentOrder?.status !== "in-progress") {
+    } else if (currentOrder?.status === "reading") {
       if (currentCustomer === "/customer1-talk.gif") {
         setCurrentCustomer("/customer1-idle.gif");
       }
@@ -246,7 +246,7 @@ export default function OrderMaker() {
           {!spoken && delay && dialogue && (
             <Typewriter
               text={dialogue}
-              speed={32}
+              speed={30}
               onDone={handleDialogueDone}
             />
           )}
