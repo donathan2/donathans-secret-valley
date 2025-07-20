@@ -167,7 +167,7 @@ export default function AdventurePage() {
                 <p className="text-xl pl-[7%] pr-[7%] mt-[2%]">
                   Take over ice cream scooping for a day and tend to the wacky
                   dessert orders of the vibrant customers of the valley in a
-                  relaxed, easy-paced environment. (WARNING WIP)
+                  relaxed, easy-paced environment. (WIP)
                 </p>
               </div>
             </div>
