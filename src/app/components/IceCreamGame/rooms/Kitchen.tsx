@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Selectables from "../Selectables";
-import DisplayUpdater from "../DIsplayUpdater";
+import DisplayUpdater from "../DisplayUpdater";
 import SwitchLogic from "../SwitchLogic";
 import PickUpLogic from "../PickUpLogic";
 

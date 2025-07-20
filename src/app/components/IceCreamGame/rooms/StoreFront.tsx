@@ -2,7 +2,7 @@ import OrderMaker from "../OrderMaker";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useGame } from "../StoreContext";
-import DisplayUpdater from "../DIsplayUpdater";
+import DisplayUpdater from "../DisplayUpdater";
 import ServingLogic from "../ServingLogic";
 
 type Props = {

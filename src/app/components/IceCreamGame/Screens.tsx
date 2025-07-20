@@ -9,9 +9,8 @@ const GameScreen = () => {
   const [room, setRoom] = useState<"storefront" | "kitchen">("storefront");
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { switchOn } = useGame();
-  const { soundTriggers } = useSoundTriggers();
 
-  soundTriggers();
+  useSoundTriggers();
 
   useEffect(() => {
     const storeFrontOST = new Audio("/storefront-theme.mp3");

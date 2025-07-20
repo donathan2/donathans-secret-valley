@@ -3,7 +3,6 @@
 import { useGame } from "./StoreContext";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { playCherry } from "@/app/lib/sounds";
 
 export default function DisplayUpdater() {
   const { base, scoopOne, scoopTwo, scoopThree, toppings, pickUp } = useGame();
