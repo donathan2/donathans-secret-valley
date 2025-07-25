@@ -7,11 +7,12 @@ import { } from "@/app/lib/sounds"
 
 export default function useDisplayManager() {
 
-    const {base, setBase, scoopOne, setScoopOne, scoopTwo, setScoopTwo, scoopThree, setScoopThree, toppings, setToppings, pickUp} = useGame()
+    const {base, setBase, scoopOne, setScoopOne, scoopTwo, setScoopTwo, scoopThree, setScoopThree, toppings, setToppings, pickUp, clearIceCream, setPickUp} = useGame()
 
     const bases = ["normal cone", "chocolate cone", "cup"]
     const flavors = ["vanilla", "chocolate", "strawberry", "mint choco", "birthday cake", "cotton candy", "matcha", "cookies & cream", "mango"]
     const toppingSet = ["some rainbow sprinkles", "some chocolate chips", "some chocolate sauce", "a cherry", "some whipped cream"]
+    const popsicles = ["orange", "cherry", "grape"]
 
 
  function displayManager(element: string) {
@@ -76,6 +77,17 @@ export default function useDisplayManager() {
                 }))
             }
         }
+    }
+
+    else if (popsicles.includes(element)) {
+        if (element === "orange" && base !== "orange") {
+            clearIceCream()
+            setBase("orange popsicle")
+            setPickUp(true)
+            console.log("managed")
+            
+        }
+
     }
 
 

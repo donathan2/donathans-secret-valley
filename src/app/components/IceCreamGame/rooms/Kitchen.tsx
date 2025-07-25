@@ -4,6 +4,7 @@ import Selectables from "../Selectables";
 import DisplayUpdater from "../DisplayUpdater";
 import SwitchLogic from "../SwitchLogic";
 import PickUpLogic from "../PickUpLogic";
+import Fridge from "../Fridge";
 
 type Props = {
   onNavigate: (room: "storefront" | "kitchen") => void;
@@ -12,7 +13,7 @@ type Props = {
 const Kitchen: React.FC<Props> = ({ onNavigate }) => {
   return (
     <>
-      <div className="absolute w-full h-full bg-[url('/kitchen.png')] bg-cover scale-x-[-1]"></div>
+      <div className="absolute w-full h-full bg-[url('/kitchen-fridge.png')] bg-no-repeat bg-[length:100%_100%] scale-x-[-1]"></div>
       <motion.div
         className="absolute w-[20%] h-[20%] left-0 top-0 translate-y-[-20%]"
         initial={{ y: -200 }}
@@ -25,6 +26,7 @@ const Kitchen: React.FC<Props> = ({ onNavigate }) => {
       </motion.div>
       <Selectables></Selectables>
       <DisplayUpdater></DisplayUpdater>
+      <Fridge></Fridge>
       <SwitchLogic></SwitchLogic>
       <PickUpLogic></PickUpLogic>
     </>

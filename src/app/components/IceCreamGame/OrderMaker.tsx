@@ -110,13 +110,7 @@ export default function OrderMaker() {
       "some whipped cream",
       "some chocolate chips",
     ];
-    const popsicleFlavors = [
-      "strawberry",
-      "watermelon",
-      "orange",
-      "grape",
-      "galaxy berry",
-    ];
+    const popsicleFlavors = ["orange", "cherry", "grape"];
 
     //select next id
     idCount += 1;

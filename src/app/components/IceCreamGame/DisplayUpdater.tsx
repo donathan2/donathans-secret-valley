@@ -10,7 +10,11 @@ export default function DisplayUpdater() {
   return (
     <div
       className={`absolute z-[52] ${
-        !pickUp
+        base === "cherry popsicle" ||
+        base === "orange popsicle" ||
+        base === "grape popsicle"
+          ? "w-[32%] h-[65%] right-[10%] -bottom-[5%]"
+          : !pickUp
           ? " w-[30%] h-[60%] left-[33%] bottom-[20%]"
           : " w-[35%] h-[70%] right-[10%] -bottom-[10%]"
       }`}
@@ -27,6 +31,10 @@ export default function DisplayUpdater() {
             ? "w-[33%] h-[45%] left-[32%] bottom-[13%]"
             : base === "cup"
             ? "w-[34%] h-[28%] left-[32%] bottom-[2%]"
+            : base === "orange popsicle" ||
+              base === "cherry popsicle" ||
+              base === "grape popsicle"
+            ? "w-[30%] h-[65%] left-[32%] bottom-[2%]"
             : "hidden"
         }`}
       >
@@ -42,6 +50,8 @@ export default function DisplayUpdater() {
               ? "/cone-chocolate.png"
               : base === "cup"
               ? "/cup-real.png"
+              : base === "orange popsicle"
+              ? "/orange-popsicle.png"
               : "/placeholder.png"
           }
           alt="base"

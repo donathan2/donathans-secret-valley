@@ -58,8 +58,45 @@ const badOrder = ["... Did you have an accident in the kitchen?",
     if (!currentOrder) {
       return
     }
-    // 1 POINT FOR CORRECT BASE, -1 FOR WRONG
     let pointCount = 0;
+
+    // POPSICLE ORDER: IF SUBMITS CORRECT POPSICLE: 7 PTS, IF SUBMITS WRONG POPSICLE: 3 PTS, IF DOESNT SUBMIT POPSICLE, 0 PTS
+    if (currentOrder.desired.type === "popsicle") {
+      if (currentOrder.desired.popsicleFlavor === "orange") {
+        if (base === "orange popsicle") {
+          pointCount = 7
+        } else if (base === "cherry popsicle" || base === "grape popsicle") {
+          pointCount = 3
+        } else {
+          pointCount = 0
+        }
+      } else if (currentOrder.desired.popsicleFlavor === "cherry") {
+        if (base === "cherry popsicle") {
+          pointCount = 7
+        } else if (base === "orange popsicle" || base === "grape popsicle") {
+          pointCount = 3
+        } else {
+          pointCount = 0
+        }
+    } else if (currentOrder.desired.popsicleFlavor === "grape") {
+        if (base === "grape popsicle") {
+          pointCount = 7
+        } else if (base === "orange popsicle" || base === "cherry popsicle") {
+          pointCount = 3
+        } else {
+          pointCount = 0
+        }
+    }
+
+    // NON-POPSICLE ORDER: IF SUBMITS A POPSICLE WHEN NOT REQUESTED, INSTANT 0
+  } else if ((base === "orange popsicle" || base === "cherry popsicle" || base === "grape popsicle")) {
+    pointCount = 0
+    console.log("submitted popsicle when regular")
+
+    // OTHER NON-POPSICLE ORDERS
+  } else {
+    // 1 POINT FOR CORRECT BASE, -1 FOR WRONG
+    
     if (currentOrder?.desired.type === base) {
       console.log("base point +1")
       pointCount += 1
@@ -161,14 +198,17 @@ const badOrder = ["... Did you have an accident in the kitchen?",
     {pointCount -=1}
     console.log("topping points -", localToppingPoints)
   pointCount += localToppingPoints}
+  }
 
   return pointCount
   }
+
 
   function randomFromArray<T>(arr: T[]): T {
     const index = Math.floor(Math.random() * arr.length);
     return arr[index];
   }
+  
 
   
   return {startAssessment}
