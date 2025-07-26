@@ -16,7 +16,7 @@ export default function useDisplayManager() {
 
 
  function displayManager(element: string) {
-    if (pickUp) return;
+    if (pickUp && !popsicles.includes(element)) return;
     else if (bases.includes(element)) {
         if (base !== element && scoopOne === "none") {
             setBase(element)
@@ -80,12 +80,25 @@ export default function useDisplayManager() {
     }
 
     else if (popsicles.includes(element)) {
+        console.log(base)
         if (element === "orange" && base !== "orange") {
             clearIceCream()
             setBase("orange popsicle")
             setPickUp(true)
-            console.log("managed")
+            console.log("managed orange")
             
+        } else if (element === "cherry" && base !== "cherry") {
+            clearIceCream()
+            setBase("cherry popsicle")
+            setPickUp(true)
+            console.log("managed cherry")
+            
+        } else {
+            clearIceCream()
+            setBase("grape popsicle")
+            setPickUp(true)
+            console.log("managed grape")
+
         }
 
     }

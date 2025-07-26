@@ -58,7 +58,10 @@ export default function Fridge() {
           }
           transition={{ type: "spring", stiffness: 80 }}
           whileHover={{ scale: 1.3 }}
-          onClick={() => setShowFridge(false)}
+          onClick={() => {
+            displayManager("cherry");
+            setShowFridge(false);
+          }}
         >
           <Image src="/cherry-pop.png" alt="cherry popsicle" fill></Image>
         </motion.div>
@@ -70,7 +73,11 @@ export default function Fridge() {
           }
           transition={{ type: "spring", stiffness: 80 }}
           whileHover={{ scale: 1.3 }}
-          onClick={() => setShowFridge(false)}
+          onClick={() => {
+            displayManager("grape");
+            console.log("tried to input grape");
+            setShowFridge(false);
+          }}
         >
           <Image src="/grape-pop.png" alt="grape popsicle" fill></Image>
         </motion.div>

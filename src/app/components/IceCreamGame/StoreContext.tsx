@@ -101,6 +101,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [showFridge, setShowFridge] = useState(false);
 
   function clearIceCream() {
+    console.log("cleared!");
     setScoopOne("none");
     setScoopTwo("none");
     setScoopThree("none");

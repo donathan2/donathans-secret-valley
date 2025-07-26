@@ -53,3 +53,7 @@ export const playGood = () => playSFX("/good.mp3", 0.7);
 export const playMid = () => playSFX("/mid.mp3", 0.7);
 export const playBad = () => playSFX("/bad.mp3", 0.7);
 export const playPickUp = () => playSFX("/pickup.wav", 1);
+export const playFridge = () => playSFX("/fridge-2.wav", 0.3);
+export const playFridgeClose = () => playSFX("/fridge1.wav", 0.6);
+export const playPopsicle = () => playSFX("/popsicle-equip.wav", 0.4);
+

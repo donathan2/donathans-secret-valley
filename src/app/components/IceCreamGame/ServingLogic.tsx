@@ -21,7 +21,7 @@ export default function ServingLogic() {
 
   return (
     <div>
-      {pickUp && (
+      {pickUp && currentOrder && currentOrder.status === "in-progress" && (
         <motion.div
           className="absolute w-[10%] h-[8%] left-[42%] bottom-[42%] bg-lime-400 border-black border border-[4px] z-[53]"
           whileHover={{ scale: 1.1 }}

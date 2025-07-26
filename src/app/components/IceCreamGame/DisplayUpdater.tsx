@@ -52,6 +52,10 @@ export default function DisplayUpdater() {
               ? "/cup-real.png"
               : base === "orange popsicle"
               ? "/orange-popsicle.png"
+              : base === "cherry popsicle"
+              ? "/cherry-popsicle.png"
+              : base === "grape popsicle"
+              ? "/grape-popsicle.png"
               : "/placeholder.png"
           }
           alt="base"

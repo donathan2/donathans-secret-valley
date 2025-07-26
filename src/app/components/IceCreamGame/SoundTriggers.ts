@@ -2,10 +2,10 @@
 
 import { useGame } from "./StoreContext";
 import { useEffect } from "react";
-import { playCone, playChocCone, playCup, playLights, playPickUp } from "@/app/lib/sounds";
+import { playCone, playChocCone, playCup, playLights, playPickUp, playFridge, playFridgeClose, playPopsicle } from "@/app/lib/sounds";
 
 export default function useSoundTriggers() {
-  const { base, switchOn, pickUp, enteredKitchen } = useGame();
+  const { base, switchOn, pickUp, enteredKitchen, showFridge } = useGame();
 
   useEffect(() => {
     if (base === "normal cone") {
@@ -14,6 +14,8 @@ export default function useSoundTriggers() {
       playChocCone();
     } else if (base === "cup") {
       playCup();
+    } else if (base === "orange popsicle" || base === "cherry popsicle" || base === "grape popsicle") {
+      playPopsicle();
     }
   }, [base]);
 
@@ -28,4 +30,14 @@ export default function useSoundTriggers() {
       playPickUp();
     }
   }, [pickUp]);
+
+  useEffect(() => {
+    if (enteredKitchen) {
+      if (showFridge) {
+      playFridge();
+      } else {
+        playFridgeClose();
+      }
+    }
+  }, [showFridge]);
 }
