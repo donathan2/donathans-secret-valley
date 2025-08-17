@@ -17,7 +17,7 @@
 <ul>
   <li> ❤️ Life Elixir: a potion that heals 1 heart, but with good luck can recover up to 4</li>
   <li> 👾 Overlord's Dominion: a sword that empowers the user's next spell with extra dmg, healing, and extra crit chance</li>
-  <li> 💍 Warrior's Memento: an amulet that increases the next spell casted with dmg proportional to the user's missing hearts</li>
+  <li> 💍 Warrior's Memento: an amulet that increases damage of the next spell casted proportional to the user's missing hearts</li>
   <li> 🪄 The Unraveling: a staff with complex abilities: able to massively empower crit dmg, heal incredible amounts of HP, or recover a used item depending on the user's elemental manipulation </li>
   <li> 🛡️ Guardian's Will: a shield that grants the user a chance to dodge the monster's next 2 attacks</li>
 </ul>
