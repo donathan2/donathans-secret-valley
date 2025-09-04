@@ -150,7 +150,7 @@ export default function BioPage() {
             <img src="/linkedin.png" alt="linkedin" />
           </a>
           <a
-            href="https://leetcode.com/u/alear34/"
+            href="https://leetcode.com/u/donathan2/"
             target="_blank"
             rel="noopener noreferrer"
             className="ml-15 rounded-xl h-[95px] w-[95px] hover:bg-white/15 transition inline-flex items-center justify-center"
