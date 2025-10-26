@@ -84,6 +84,7 @@
   </ul>
 <h3>Backend</h3>
 <ul>
+  <li>TypeScript</li>
   <li>Supabase</li>
 </ul>
 <h3>Deployment</h3>
